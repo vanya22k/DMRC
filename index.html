@@ -7,55 +7,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-/* ========= TOKENS ========= */
+/* ========= TOKENS — LIGHT THEME ========= */
 :root{
-  --bg0:#04080F; --bg1:#09111F; --bg2:#0E1828; --bg3:#142033; --bg4:#1A2840;
-  --b0:#111E32; --b1:#1B2D47; --b2:#243D5F;
-  --t0:#E8EFF8; --t1:#8FA6C4; --t2:#4E6580;
-  --accent:#3E86FF; --accent-d:rgba(62,134,255,.14);
-  --crit:#FF4444; --crit-d:rgba(255,68,68,.13);
-  --high:#FF8C00; --high-d:rgba(255,140,0,.13);
-  --med:#F5C400; --med-d:rgba(245,196,0,.1);
-  --low:#22C55E; --low-d:rgba(34,197,94,.12);
-  --Yel:#FFD700; --Blu:#0087DC; --Red:#E31E24;
-  --Vio:#9333EA; --Mag:#EC4899; --Grn:#16A34A; --Gry:#8B9CC0;
+  --bg0:#EDF1F7; --bg1:#FFFFFF; --bg2:#FFFFFF; --bg3:#F5F7FB; --bg4:#EDF1F7;
+  --b0:#E3E8F0; --b1:#C9D3E0; --b2:#94A3B8;
+  --t0:#0D1829; --t1:#2D3E55; --t2:#60738F;
+  --accent:#2558E8; --accent-d:rgba(37,88,232,.09);
+  --crit:#D92B2B; --crit-d:rgba(217,43,43,.08);
+  --high:#E06200; --high-d:rgba(224,98,0,.08);
+  --med:#B07800; --med-d:rgba(176,120,0,.08);
+  --low:#15803D; --low-d:rgba(21,128,61,.09);
+  --Yel:#B45309; --Blu:#1D6FDB; --Red:#D92B2B;
+  --Vio:#6D28D9; --Mag:#BE185D; --Grn:#15803D; --Gry:#475569;
   --r:8px; --r-lg:14px; --r-xl:20px;
-  --sh:0 4px 24px rgba(0,0,0,.5);
+  --sh:0 1px 4px rgba(13,24,41,.06),0 4px 16px rgba(13,24,41,.05);
+  --sh-md:0 4px 20px rgba(13,24,41,.1),0 1px 4px rgba(13,24,41,.06);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--bg0);color:var(--t0);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;overflow:hidden}
 
 /* ========= SCROLLBAR ========= */
 ::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:var(--bg1)}
-::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
+::-webkit-scrollbar-track{background:#F1F5F9}
+::-webkit-scrollbar-thumb{background:var(--b1);border-radius:4px}
 
 /* ========= LAYOUT ========= */
 #app{display:flex;height:100vh}
 
 /* SIDEBAR */
-.sidebar{width:220px;min-width:220px;background:var(--bg1);border-right:1px solid var(--b0);display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:10}
-.sidebar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0,transparent 40px,rgba(62,134,255,.025) 40px,rgba(62,134,255,.025) 41px);pointer-events:none}
-.sb-logo{padding:20px 16px 12px;border-bottom:1px solid var(--b0)}
-.sb-logo-mark{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.sb-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:6px}
-.sb-logo-icon span{background:#fff;border-radius:1px;display:block}
+.sidebar{width:220px;min-width:220px;background:var(--bg1);border-right:1px solid var(--b0);display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:10;box-shadow:2px 0 12px rgba(13,24,41,.05)}
+.sidebar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0,transparent 38px,rgba(37,88,232,.03) 38px,rgba(37,88,232,.03) 39px);pointer-events:none}
+.sb-logo{padding:18px 16px 12px;border-bottom:1px solid var(--b0)}
+.sb-logo-mark{display:flex;align-items:center;gap:10px;margin-bottom:3px}
+.sb-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#2558E8,#6D28D9);border-radius:8px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:6px;flex-shrink:0}
+.sb-logo-icon span{background:rgba(255,255,255,.9);border-radius:1px;display:block}
 .sb-logo-icon span:nth-child(2){background:rgba(255,255,255,.5)}
-.sb-logo-title{font-weight:800;font-size:13px;letter-spacing:-.2px;line-height:1.2}
-.sb-logo-sub{font-size:10px;color:var(--t2);letter-spacing:.3px}
-.sb-synth{margin:10px 16px;padding:6px 10px;background:rgba(245,196,0,.08);border:1px solid rgba(245,196,0,.2);border-radius:6px;font-size:10px;color:var(--med);line-height:1.4}
+.sb-logo-title{font-weight:800;font-size:13px;letter-spacing:-.3px;line-height:1.2;color:var(--t0)}
+.sb-logo-sub{font-size:10px;color:var(--t2);letter-spacing:.2px}
+.sb-synth{margin:8px 14px;padding:6px 10px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:6px;font-size:10px;color:#92400E;line-height:1.4}
 
 .sb-nav{flex:1;padding:10px 8px;overflow-y:auto}
-.sb-section-label{font-size:10px;color:var(--t2);letter-spacing:.8px;padding:8px 8px 4px;text-transform:uppercase;font-weight:600}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:6px;cursor:pointer;color:var(--t1);font-size:13px;font-weight:500;transition:all .15s;margin-bottom:2px;user-select:none}
-.nav-item svg{flex-shrink:0;opacity:.7}
+.sb-section-label{font-size:10px;color:var(--t2);letter-spacing:.7px;padding:8px 8px 4px;text-transform:uppercase;font-weight:700}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;color:var(--t2);font-size:13px;font-weight:500;transition:all .15s;margin-bottom:2px;user-select:none}
+.nav-item svg{flex-shrink:0;opacity:.65}
 .nav-item:hover{background:var(--bg3);color:var(--t0)}
-.nav-item.active{background:var(--accent-d);color:var(--accent);border:1px solid rgba(62,134,255,.2)}
+.nav-item.active{background:rgba(37,88,232,.08);color:var(--accent);border:1px solid rgba(37,88,232,.18)}
 .nav-item.active svg{opacity:1}
-.nav-badge{margin-left:auto;font-size:10px;background:var(--crit-d);color:var(--crit);padding:1px 6px;border-radius:20px;font-weight:600}
+.nav-badge{margin-left:auto;font-size:10px;background:rgba(217,43,43,.1);color:var(--crit);padding:1px 6px;border-radius:20px;font-weight:700}
 
 .sb-lines{padding:12px 16px;border-top:1px solid var(--b0)}
-.sb-lines-title{font-size:10px;color:var(--t2);letter-spacing:.6px;margin-bottom:8px;font-weight:600;text-transform:uppercase}
+.sb-lines-title{font-size:10px;color:var(--t2);letter-spacing:.5px;margin-bottom:8px;font-weight:700;text-transform:uppercase}
 .line-dots{display:flex;flex-direction:column;gap:5px}
 .line-dot{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t1)}
 .line-dot-color{width:20px;height:3px;border-radius:2px}
@@ -64,29 +65,30 @@ html,body{height:100%;background:var(--bg0);color:var(--t0);font-family:'Inter',
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 
 /* TOPBAR */
-.topbar{height:56px;background:var(--bg1);border-bottom:1px solid var(--b0);display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0}
-.topbar-title{font-weight:700;font-size:15px;color:var(--t0);white-space:nowrap}
+.topbar{height:56px;background:var(--bg1);border-bottom:1px solid var(--b0);display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0;position:relative}
+.topbar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2558E8 0%,#6D28D9 25%,#BE185D 50%,#D92B2B 70%,#15803D 85%,#B45309 100%)}
+.topbar-title{font-weight:800;font-size:15px;color:var(--t0);white-space:nowrap}
 .topbar-sep{width:1px;height:20px;background:var(--b1)}
-.topbar-status{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t1)}
-.status-dot{width:7px;height:7px;border-radius:50%;background:var(--low);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.topbar-status{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t2)}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#16A34A;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-.btn{padding:6px 14px;border-radius:6px;border:1px solid var(--b2);background:var(--bg3);color:var(--t1);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;white-space:nowrap}
-.btn:hover{background:var(--bg4);color:var(--t0);border-color:var(--b2)}
+.btn{padding:6px 14px;border-radius:7px;border:1px solid var(--b1);background:var(--bg1);color:var(--t1);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;white-space:nowrap}
+.btn:hover{background:var(--bg3);color:var(--t0);border-color:var(--b2)}
 .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn-primary:hover{background:#5595FF;border-color:#5595FF;color:#fff}
+.btn-primary:hover{background:#1D47C8;border-color:#1D47C8;color:#fff}
 .btn-sm{padding:4px 10px;font-size:11px}
 #last-updated{font-size:11px;color:var(--t2)}
 
 /* FILTER BAR */
-.filter-bar{padding:10px 20px;border-bottom:1px solid var(--b0);display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0;background:var(--bg1)}
-.filter-label{font-size:11px;color:var(--t2);font-weight:600;white-space:nowrap}
-select.filter-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--b1);background:var(--bg2);color:var(--t1);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;outline:none}
-select.filter-sel:focus{border-color:var(--accent)}
-input.filter-date{padding:5px 10px;border-radius:6px;border:1px solid var(--b1);background:var(--bg2);color:var(--t1);font-size:12px;font-family:'Inter',sans-serif;outline:none;width:130px}
-input.filter-date:focus{border-color:var(--accent)}
+.filter-bar{padding:10px 20px;border-bottom:1px solid var(--b0);display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0;background:#FAFBFF}
+.filter-label{font-size:11px;color:var(--t2);font-weight:700;white-space:nowrap}
+select.filter-sel{padding:5px 10px;border-radius:7px;border:1px solid var(--b1);background:var(--bg1);color:var(--t1);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;outline:none;transition:border-color .15s}
+select.filter-sel:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,88,232,.1)}
+input.filter-date{padding:5px 10px;border-radius:7px;border:1px solid var(--b1);background:var(--bg1);color:var(--t1);font-size:12px;font-family:'Inter',sans-serif;outline:none;width:130px;transition:border-color .15s}
+input.filter-date:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,88,232,.1)}
 .filter-clear{font-size:11px;color:var(--t2);cursor:pointer;text-decoration:underline;white-space:nowrap}
-.filter-clear:hover{color:var(--t1)}
+.filter-clear:hover{color:var(--crit)}
 
 /* CONTENT */
 .content{flex:1;overflow-y:auto;overflow-x:hidden}
@@ -95,72 +97,72 @@ input.filter-date:focus{border-color:var(--accent)}
 
 /* SECTION HEADERS */
 .sec-header{margin-bottom:18px}
-.sec-title{font-size:18px;font-weight:700;color:var(--t0)}
+.sec-title{font-size:18px;font-weight:800;color:var(--t0)}
 .sec-sub{font-size:13px;color:var(--t2);margin-top:2px}
 
 /* ========= KPI CARDS ========= */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.kpi-card{background:var(--bg2);border:1px solid var(--b0);border-radius:var(--r-lg);padding:16px;position:relative;overflow:hidden;transition:border-color .2s}
-.kpi-card:hover{border-color:var(--b2)}
-.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent)}
-.kpi-card.kpi-crit::before{background:var(--crit)}
-.kpi-card.kpi-high::before{background:var(--high)}
-.kpi-card.kpi-low-ok::before{background:var(--low)}
-.kpi-card.kpi-med::before{background:var(--med)}
-.kpi-label{font-size:11px;color:var(--t2);font-weight:600;letter-spacing:.2px;margin-bottom:8px}
-.kpi-val{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--t0);line-height:1;margin-bottom:6px}
+.kpi-card{background:var(--bg2);border:1px solid var(--b0);border-radius:var(--r-lg);padding:16px;position:relative;overflow:hidden;transition:all .2s;box-shadow:var(--sh)}
+.kpi-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.kpi-card.kpi-crit::before{background:linear-gradient(90deg,var(--crit),#FF6B6B)}
+.kpi-card.kpi-high::before{background:linear-gradient(90deg,var(--high),#FFB347)}
+.kpi-card.kpi-low-ok::before{background:linear-gradient(90deg,var(--low),#4ADE80)}
+.kpi-card.kpi-med::before{background:linear-gradient(90deg,var(--med),#FCD34D)}
+.kpi-label{font-size:11px;color:var(--t2);font-weight:600;letter-spacing:.1px;margin-bottom:8px}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--t0);line-height:1;margin-bottom:6px}
 .kpi-val.kpi-val-sm{font-size:22px}
 .kpi-footer{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--t2)}
-.kpi-trend-up{color:var(--low)}
-.kpi-trend-down{color:var(--crit)}
+.kpi-trend-up{color:var(--low);font-weight:600}
+.kpi-trend-down{color:var(--crit);font-weight:600}
 .kpi-trend-flat{color:var(--t2)}
-.kpi-icon{position:absolute;top:14px;right:14px;opacity:.15;font-size:22px}
+.kpi-icon{position:absolute;top:14px;right:14px;opacity:.1;font-size:24px}
 
 /* ========= CARDS ========= */
-.card{background:var(--bg2);border:1px solid var(--b0);border-radius:var(--r-lg);overflow:hidden}
-.card-header{padding:14px 16px;border-bottom:1px solid var(--b0);display:flex;align-items:center;gap:10px}
-.card-title{font-size:13px;font-weight:600;color:var(--t0)}
-.card-badge{margin-left:auto;font-size:11px;padding:2px 8px;border-radius:12px;font-weight:600}
+.card{background:var(--bg2);border:1px solid var(--b0);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh)}
+.card-header{padding:13px 16px;border-bottom:1px solid var(--b0);display:flex;align-items:center;gap:10px;background:var(--bg3)}
+.card-title{font-size:13px;font-weight:700;color:var(--t0)}
+.card-badge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:12px;font-weight:600}
 .card-body{padding:16px}
 
 /* ========= PRIORITY BADGE ========= */
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap}
-.badge-crit{background:var(--crit-d);color:var(--crit);border:1px solid rgba(255,68,68,.25)}
-.badge-high{background:var(--high-d);color:var(--high);border:1px solid rgba(255,140,0,.25)}
-.badge-med{background:var(--med-d);color:var(--med);border:1px solid rgba(245,196,0,.25)}
-.badge-low{background:var(--low-d);color:var(--low);border:1px solid rgba(34,197,94,.25)}
-.badge-blue{background:var(--accent-d);color:var(--accent);border:1px solid rgba(62,134,255,.2)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.badge-crit{background:rgba(217,43,43,.1);color:var(--crit);border:1.5px solid rgba(217,43,43,.2)}
+.badge-high{background:rgba(224,98,0,.1);color:var(--high);border:1.5px solid rgba(224,98,0,.2)}
+.badge-med{background:rgba(176,120,0,.1);color:var(--med);border:1.5px solid rgba(176,120,0,.2)}
+.badge-low{background:rgba(21,128,61,.1);color:var(--low);border:1.5px solid rgba(21,128,61,.2)}
+.badge-blue{background:rgba(37,88,232,.1);color:var(--accent);border:1.5px solid rgba(37,88,232,.2)}
 
 /* LINE PILL */
-.line-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:.2px}
+.line-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:.2px}
 
 /* ========= TABLE ========= */
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
-th{font-size:11px;color:var(--t2);font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid var(--b0);cursor:pointer;user-select:none;white-space:nowrap}
+th{font-size:11px;color:var(--t2);font-weight:700;padding:9px 12px;text-align:left;border-bottom:1px solid var(--b0);cursor:pointer;user-select:none;white-space:nowrap;background:var(--bg3)}
 th:hover{color:var(--t1)}
 td{padding:10px 12px;border-bottom:1px solid var(--b0);font-size:12px;color:var(--t1);vertical-align:middle}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:var(--bg3)}
+tr:hover td{background:#F0F4FF}
 .tbl-station{display:flex;align-items:center;gap:8px}
-.station-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.station-name{font-weight:600;color:var(--t0);font-size:12px}
+.station-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.station-name{font-weight:700;color:var(--t0);font-size:12px}
 .station-type{font-size:10px;color:var(--t2);margin-top:1px}
-.metric-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t0)}
-.metric-bar{height:3px;background:var(--b1);border-radius:2px;margin-top:3px;min-width:60px}
+.metric-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t0);font-weight:600}
+.metric-bar{height:3px;background:var(--b0);border-radius:2px;margin-top:3px;min-width:60px}
 .metric-fill{height:100%;border-radius:2px}
 
 /* ========= ACTION CATEGORY ========= */
-.action-cat{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;white-space:nowrap}
-.ac-capacity{background:rgba(255,68,68,.1);color:var(--crit)}
-.ac-peak{background:rgba(255,140,0,.1);color:var(--high)}
-.ac-growth{background:rgba(139,51,234,.1);color:#C084FC}
-.ac-interchange{background:rgba(62,134,255,.1);color:var(--accent)}
-.ac-reliability{background:rgba(245,196,0,.1);color:var(--med)}
-.ac-underutil{background:rgba(34,197,94,.1);color:var(--low)}
-.ac-monitor{background:var(--bg3);color:var(--t2)}
-.ac-flow{background:rgba(236,72,153,.1);color:var(--Mag)}
-.ac-future{background:rgba(139,156,192,.1);color:var(--Gry)}
+.action-cat{font-size:11px;padding:3px 9px;border-radius:6px;font-weight:600;white-space:nowrap}
+.ac-capacity{background:rgba(217,43,43,.09);color:#B91C1C}
+.ac-peak{background:rgba(224,98,0,.09);color:#C2410C}
+.ac-growth{background:rgba(109,40,217,.09);color:#5B21B6}
+.ac-interchange{background:rgba(37,88,232,.09);color:#1D47C8}
+.ac-reliability{background:rgba(176,120,0,.09);color:#92400E}
+.ac-underutil{background:rgba(21,128,61,.09);color:#166534}
+.ac-monitor{background:var(--bg3);color:var(--t2);border:1px solid var(--b0)}
+.ac-flow{background:rgba(190,24,93,.09);color:#9D174D}
+.ac-future{background:rgba(71,85,105,.09);color:#334155}
 
 /* ========= CHARTS ========= */
 .chart-wrap{position:relative;min-height:0}
@@ -172,76 +174,66 @@ tr:hover td{background:var(--bg3)}
 /* ========= DONUT LEGEND ========= */
 .donut-legend{display:flex;flex-direction:column;gap:8px;padding:4px 0}
 .donut-item{display:flex;align-items:center;gap:8px}
-.donut-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.donut-label{font-size:12px;color:var(--t1)}
-.donut-val{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t0);font-weight:600}
+.donut-swatch{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.donut-label{font-size:12px;color:var(--t1);font-weight:500}
+.donut-val{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t0);font-weight:700}
 
 /* ========= DRILL-DOWN PANEL ========= */
-.panel-overlay{position:fixed;inset:0;background:rgba(4,8,15,.7);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.panel-overlay{position:fixed;inset:0;background:rgba(13,24,41,.35);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(2px)}
 .panel-overlay.open{opacity:1;pointer-events:all}
-.drilldown{position:fixed;top:0;right:-680px;width:680px;height:100vh;background:var(--bg1);border-left:1px solid var(--b1);z-index:50;overflow-y:auto;transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.drilldown{position:fixed;top:0;right:-680px;width:680px;height:100vh;background:var(--bg1);border-left:1px solid var(--b1);z-index:50;overflow-y:auto;transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(13,24,41,.12)}
 .drilldown.open{right:0}
-.dd-header{padding:18px 20px;border-bottom:1px solid var(--b0);display:flex;align-items:flex-start;gap:12px;flex-shrink:0}
-.dd-close{width:28px;height:28px;background:var(--bg3);border:1px solid var(--b1);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-left:auto;flex-shrink:0;color:var(--t1);font-size:16px;transition:all .15s}
-.dd-close:hover{background:var(--bg4);color:var(--t0)}
-.dd-title{font-size:17px;font-weight:700;color:var(--t0)}
-.dd-meta{font-size:12px;color:var(--t2);margin-top:2px;display:flex;align-items:center;gap:8px}
-.dd-body{flex:1;overflow-y:auto;padding:18px 20px}
+.dd-header{padding:18px 20px;border-bottom:1px solid var(--b0);display:flex;align-items:flex-start;gap:12px;flex-shrink:0;background:var(--bg3)}
+.dd-close{width:28px;height:28px;background:var(--bg1);border:1px solid var(--b1);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-left:auto;flex-shrink:0;color:var(--t2);font-size:16px;transition:all .15s}
+.dd-close:hover{background:var(--crit-d);color:var(--crit);border-color:rgba(217,43,43,.3)}
+.dd-title{font-size:17px;font-weight:800;color:var(--t0)}
+.dd-meta{font-size:12px;color:var(--t2);margin-top:3px;display:flex;align-items:center;gap:8px}
+.dd-body{flex:1;overflow-y:auto;padding:18px 20px;background:var(--bg0)}
 .dd-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.dd-kpi{background:var(--bg2);border:1px solid var(--b0);border-radius:var(--r);padding:12px}
-.dd-kpi-label{font-size:10px;color:var(--t2);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.2px}
-.dd-kpi-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--t0)}
+.dd-kpi{background:var(--bg1);border:1px solid var(--b0);border-radius:var(--r);padding:12px;box-shadow:var(--sh)}
+.dd-kpi-label{font-size:10px;color:var(--t2);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.dd-kpi-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--t0)}
 .dd-kpi-sub{font-size:10px;color:var(--t2);margin-top:2px}
-.dd-action-box{background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);padding:14px;margin-bottom:16px;border-left:3px solid var(--accent)}
-.dd-action-label{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase}
-.dd-action-text{font-size:12px;color:var(--t1);line-height:1.6}
-.dd-section-title{font-size:12px;font-weight:600;color:var(--t0);margin-bottom:10px;margin-top:16px;display:flex;align-items:center;gap:8px}
+.dd-action-box{background:linear-gradient(135deg,rgba(37,88,232,.06),rgba(109,40,217,.05));border:1.5px solid rgba(37,88,232,.2);border-radius:var(--r);padding:14px;margin-bottom:16px;border-left:4px solid var(--accent)}
+.dd-action-label{font-size:10px;color:var(--accent);font-weight:800;letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase}
+.dd-action-text{font-size:12px;color:var(--t1);line-height:1.65}
+.dd-section-title{font-size:12px;font-weight:700;color:var(--t0);margin-bottom:10px;margin-top:16px;display:flex;align-items:center;gap:8px}
 .dd-section-title::after{content:'';flex:1;height:1px;background:var(--b0)}
 .dd-flags{display:flex;flex-direction:column;gap:6px}
-.dd-flag{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg2);border-radius:6px;border:1px solid var(--b0)}
-.dd-flag-dot{width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0}
-.dd-flag-label{font-size:12px;font-weight:600;color:var(--t0)}
+.dd-flag{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg1);border-radius:7px;border:1px solid var(--b0);box-shadow:var(--sh)}
+.dd-flag-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.dd-flag-label{font-size:12px;font-weight:700;color:var(--t0)}
 .dd-flag-val{font-size:11px;color:var(--t2);margin-top:1px}
 .dd-wd-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dd-wd-card{background:var(--bg2);border:1px solid var(--b0);border-radius:var(--r);padding:12px;text-align:center}
-.dd-wd-label{font-size:10px;color:var(--t2);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.2px}
-.dd-wd-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--t0)}
-.dd-wd-sub{font-size:11px;color:var(--t2);margin-top:2px}
-
-/* ========= HEATMAP ========= */
-.heatmap-wrap{overflow-x:auto}
-.heatmap-inner{display:grid;gap:3px;min-width:600px}
-.hm-label{font-size:10px;color:var(--t2);text-align:right;padding-right:8px;line-height:16px;white-space:nowrap}
-.hm-cell{width:16px;height:16px;border-radius:2px;cursor:pointer;transition:transform .1s}
-.hm-cell:hover{transform:scale(1.3)}
+.dd-wd-card{background:var(--bg1);border:1px solid var(--b0);border-radius:var(--r);padding:14px;text-align:center;box-shadow:var(--sh)}
+.dd-wd-label{font-size:10px;color:var(--t2);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px}
+.dd-wd-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--t0)}
+.dd-wd-sub{font-size:11px;color:var(--t2);margin-top:3px}
 
 /* ========= SCORE BAR ========= */
 .score-bar{display:flex;align-items:center;gap:8px}
-.score-track{flex:1;height:4px;background:var(--b1);border-radius:2px;overflow:hidden}
-.score-fill{height:100%;border-radius:2px}
-.score-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;min-width:28px;text-align:right}
+.score-track{flex:1;height:5px;background:var(--b0);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px}
+.score-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;min-width:28px;text-align:right}
 
 /* ========= GROWTH STATUS ========= */
-.growth-tag{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;white-space:nowrap}
-.gt-rapid{background:rgba(139,51,234,.12);color:#C084FC}
-.gt-growing{background:var(--low-d);color:var(--low)}
-.gt-stable{background:var(--bg3);color:var(--t2)}
+.growth-tag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700;white-space:nowrap}
+.gt-rapid{background:rgba(109,40,217,.1);color:#5B21B6}
+.gt-growing{background:rgba(21,128,61,.1);color:var(--low)}
+.gt-stable{background:var(--bg3);color:var(--t2);border:1px solid var(--b0)}
 .gt-declining{background:var(--crit-d);color:var(--crit)}
 
 /* ========= LOADING ========= */
 .loader{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px}
-.loader-track{width:200px;height:3px;background:var(--b1);border-radius:2px;overflow:hidden}
-.loader-fill{height:100%;width:40%;background:var(--accent);border-radius:2px;animation:slide 1.2s ease-in-out infinite}
+.loader-track{width:200px;height:3px;background:var(--b0);border-radius:2px;overflow:hidden}
+.loader-fill{height:100%;width:40%;background:linear-gradient(90deg,var(--accent),#6D28D9);border-radius:2px;animation:slide 1.2s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
-.loader-text{font-size:13px;color:var(--t2)}
+.loader-text{font-size:13px;color:var(--t2);font-weight:500}
 
 /* ========= EMPTY STATE ========= */
 .empty-state{padding:48px 20px;text-align:center;color:var(--t2)}
 .empty-icon{font-size:32px;margin-bottom:10px;opacity:.4}
 .empty-text{font-size:13px}
-
-/* ========= MINI CHART (inline sparkline) ========= */
-.sparkline-canvas{display:block}
 
 /* ========= RESPONSIVE ========= */
 @media(max-width:900px){
@@ -259,82 +251,109 @@ tr:hover td{background:var(--bg3)}
   .topbar-title{font-size:13px}
   .filter-bar{flex-direction:column;align-items:flex-start}
 }
+</style><style>
+/* ── extra: loading overlay & error banner ── */
+#loading-overlay{position:fixed;inset:0;background:rgba(237,241,247,.92);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;backdrop-filter:blur(3px);transition:opacity .3s}
+#loading-overlay.hidden{opacity:0;pointer-events:none}
+#error-banner{position:fixed;top:60px;left:220px;right:0;z-index:90;background:#FFF7ED;border-bottom:2px solid #FED7AA;padding:10px 20px;display:none;align-items:flex-start;gap:12px}
+#error-banner.show{display:flex}
+.err-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.err-body{flex:1}
+.err-title{font-size:13px;font-weight:700;color:#92400E}
+.err-msg{font-size:12px;color:#B45309;margin-top:2px;font-family:'JetBrains Mono',monospace;word-break:break-all}
+.err-close{font-size:18px;cursor:pointer;color:#B45309;flex-shrink:0}
+.load-line{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2)}
+.load-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
 </style>
 </head>
 <body>
 <div id="app">
+
+<!-- LOADING OVERLAY -->
+<div id="loading-overlay">
+  <div class="sb-logo-icon" style="width:44px;height:44px;padding:8px;animation:spin 2s linear infinite">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="loader-track" style="width:220px"><div class="loader-fill"></div></div>
+  <div id="load-msg" class="loader-text">Connecting to backend…</div>
+  <div class="load-line"><div class="load-dot"></div><span id="load-step">Initialising</span></div>
+</div>
+@keyframes spin{to{transform:rotate(360deg)}}
+
+<!-- ERROR BANNER -->
+<div id="error-banner">
+  <div class="err-icon">⚠️</div>
+  <div class="err-body">
+    <div class="err-title">Data load error — some sections may be empty</div>
+    <div class="err-msg" id="err-msg-text"></div>
+  </div>
+  <div class="err-close" onclick="this.parentElement.classList.remove('show')">✕</div>
+</div>
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-logo">
     <div class="sb-logo-mark">
       <div class="sb-logo-icon"><span></span><span></span><span></span><span></span></div>
-      <div>
-        <div class="sb-logo-title">DMRC Intel</div>
-        <div class="sb-logo-sub">Control Tower</div>
-      </div>
+      <div><div class="sb-logo-title">DMRC Intel</div><div class="sb-logo-sub">Control Tower</div></div>
     </div>
   </div>
-  <div class="sb-synth">⚠ Synthetic data — prototype only</div>
+  <div class="sb-synth">⚠ Synthetic prototype data</div>
   <nav class="sb-nav">
     <div class="sb-section-label">Dashboard</div>
-    <div class="nav-item active" data-tab="overview" onclick="switchTab('overview',this)">
+    <div class="nav-item active" onclick="switchTab('overview',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1" y="1" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="8.5" y="1" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="1" y="8.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
       <span>Overview</span>
     </div>
-    <div class="nav-item" data-tab="action" onclick="switchTab('action',this)">
+    <div class="nav-item" onclick="switchTab('action',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7.5 4v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
       <span>Action Center</span>
       <span class="nav-badge" id="nb-action">—</span>
     </div>
-    <div class="nav-item" data-tab="trends" onclick="switchTab('trends',this)">
+    <div class="nav-item" onclick="switchTab('trends',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.5 11.5L5.5 7l3 3L13.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Network Trends</span>
     </div>
-    <div class="nav-section-label sb-section-label" style="margin-top:6px">Analysis</div>
-    <div class="nav-item" data-tab="lines" onclick="switchTab('lines',this)">
+    <div class="sb-section-label" style="margin-top:6px">Analysis</div>
+    <div class="nav-item" onclick="switchTab('lines',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.5 7.5h12M1.5 3.5h12M1.5 11.5h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
       <span>Lines & Stations</span>
     </div>
-    <div class="nav-item" data-tab="peak" onclick="switchTab('peak',this)">
+    <div class="nav-item" onclick="switchTab('peak',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.5 11.5l3-5 3 3 3-6L13.5 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Peak Analysis</span>
     </div>
-    <div class="nav-item" data-tab="reliability" onclick="switchTab('reliability',this)">
+    <div class="nav-item" onclick="switchTab('reliability',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5L9.8 5.2l4.2.6-3 3 .7 4.2L7.5 11l-4.2 2 .7-4.2-3-3 4.2-.6z" stroke="currentColor" stroke-width="1.3"/></svg>
       <span>Reliability</span>
     </div>
-    <div class="nav-item" data-tab="growth" onclick="switchTab('growth',this)">
+    <div class="nav-item" onclick="switchTab('growth',this)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.5 13.5V7.5l3-3 3 3 3-5 3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Growth Analysis</span>
     </div>
   </nav>
   <div class="sb-lines">
     <div class="sb-lines-title">Metro Lines</div>
-    <div class="line-dots" id="line-legend"></div>
+    <div class="line-dots" id="line-legend"><div style="color:var(--t2);font-size:11px">Loading…</div></div>
   </div>
 </aside>
 
 <!-- MAIN -->
 <div class="main">
-
-  <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-title">Delhi Metro — Operational Intelligence</div>
     <div class="topbar-sep"></div>
-    <div class="topbar-status"><div class="status-dot"></div><span id="data-status">Loading data…</span></div>
+    <div class="topbar-status"><div class="status-dot"></div><span id="data-status">Initialising…</span></div>
     <div class="topbar-right">
       <span id="last-updated"></span>
       <button class="btn btn-primary btn-sm" onclick="loadAll()">↻ Refresh</button>
     </div>
   </header>
 
-  <!-- FILTER BAR -->
   <div class="filter-bar">
     <span class="filter-label">Filters</span>
-    <select class="filter-sel" id="f-line" onchange="applyFilters()">
-      <option value="">All Lines</option>
-    </select>
+    <select class="filter-sel" id="f-line" onchange="applyFilters()"><option value="">All Lines</option></select>
     <select class="filter-sel" id="f-type" onchange="applyFilters()">
       <option value="">All Station Types</option>
       <option value="Interchange">Interchange</option>
@@ -346,15 +365,14 @@ tr:hover td{background:var(--bg3)}
       <option value="Weekday">Weekday</option>
       <option value="Weekend">Weekend</option>
     </select>
-    <input class="filter-date" type="date" id="f-from" onchange="applyFilters()" title="From date">
-    <input class="filter-date" type="date" id="f-to" onchange="applyFilters()" title="To date">
+    <input class="filter-date" type="date" id="f-from" onchange="applyFilters()">
+    <input class="filter-date" type="date" id="f-to" onchange="applyFilters()">
     <span class="filter-clear" onclick="clearFilters()">Clear all</span>
   </div>
 
-  <!-- CONTENT AREA -->
   <div class="content">
 
-    <!-- 1. OVERVIEW -->
+    <!-- ── OVERVIEW ── -->
     <section class="section active" id="sec-overview">
       <div class="sec-header">
         <div class="sec-title">Network Overview</div>
@@ -364,35 +382,44 @@ tr:hover td{background:var(--bg3)}
       <div class="chart-row chart-row-2" style="margin-bottom:14px">
         <div class="card">
           <div class="card-header"><div class="card-title">Priority Distribution</div></div>
-          <div class="card-body" style="display:flex;align-items:center;gap:24px">
+          <div class="card-body" style="display:flex;align-items:center;gap:24px;min-height:158px">
             <div style="width:130px;height:130px;flex-shrink:0"><canvas id="chart-priority"></canvas></div>
             <div class="donut-legend" id="priority-legend"></div>
           </div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">Action Required by Category</div></div>
-          <div class="card-body" style="height:158px"><div class="chart-wrap" style="height:100%"><canvas id="chart-actions"></canvas></div></div>
+          <div class="card-header"><div class="card-title">Action Category Breakdown</div></div>
+          <div class="card-body" style="height:158px"><canvas id="chart-actions"></canvas></div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-title">Ridership by Station Type</div></div>
-        <div class="card-body" style="height:180px"><div class="chart-wrap" style="height:100%"><canvas id="chart-type-bar"></canvas></div></div>
+        <div class="card-header"><div class="card-title">Average Ridership by Line</div></div>
+        <div class="card-body" style="height:180px"><canvas id="chart-line-snap"></canvas></div>
       </div>
     </section>
 
-    <!-- 2. ACTION CENTER -->
+    <!-- ── ACTION CENTER ── -->
     <section class="section" id="sec-action">
       <div class="sec-header">
         <div class="sec-title">Action Center</div>
         <div class="sec-sub">Stations requiring operational attention — ranked by priority score</div>
       </div>
-      <div id="action-filter-tabs" style="display:flex;gap:6px;margin-bottom:14px"></div>
+      <div id="action-filter-tabs" style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap"></div>
       <div class="card">
-        <div class="tbl-wrap"><table id="action-table"><thead></thead><tbody></tbody></table></div>
+        <div class="tbl-wrap">
+          <table id="action-table">
+            <thead><tr>
+              <th>Station</th><th>Line</th><th>Priority</th>
+              <th>Issue Category</th><th>Avg Ridership</th>
+              <th>vs Network</th><th>Growth</th><th>Urgency</th><th></th>
+            </tr></thead>
+            <tbody id="action-tbody"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- 3. TRENDS -->
+    <!-- ── TRENDS ── -->
     <section class="section" id="sec-trends">
       <div class="sec-header">
         <div class="sec-title">Network Trends</div>
@@ -401,25 +428,23 @@ tr:hover td{background:var(--bg3)}
       <div class="card" style="margin-bottom:14px">
         <div class="card-header">
           <div class="card-title">Daily Network Ridership</div>
-          <div style="margin-left:auto;display:flex;gap:8px">
-            <span id="trend-wd-legend" style="font-size:11px;color:var(--t2)">● Weekday &nbsp; ○ Weekend</span>
-          </div>
+          <span style="margin-left:auto;font-size:11px;color:var(--t2)">● Weekday &nbsp;◌ Weekend</span>
         </div>
-        <div class="card-body" style="height:240px"><div class="chart-wrap" style="height:100%"><canvas id="chart-network-trend"></canvas></div></div>
+        <div class="card-body" style="height:240px"><canvas id="chart-network-trend"></canvas></div>
       </div>
       <div class="chart-row chart-row-2">
         <div class="card">
           <div class="card-header"><div class="card-title">Line-wise Ridership Trend</div></div>
-          <div class="card-body" style="height:200px"><div class="chart-wrap" style="height:100%"><canvas id="chart-line-trend"></canvas></div></div>
+          <div class="card-body" style="height:200px"><canvas id="chart-line-trend"></canvas></div>
         </div>
         <div class="card">
           <div class="card-header"><div class="card-title">Weekday vs Weekend — Top Stations</div></div>
-          <div class="card-body" style="height:200px"><div class="chart-wrap" style="height:100%"><canvas id="chart-wd-we"></canvas></div></div>
+          <div class="card-body" style="height:200px"><canvas id="chart-wd-we"></canvas></div>
         </div>
       </div>
     </section>
 
-    <!-- 4. LINES & STATIONS -->
+    <!-- ── LINES ── -->
     <section class="section" id="sec-lines">
       <div class="sec-header">
         <div class="sec-title">Lines & Stations</div>
@@ -428,28 +453,33 @@ tr:hover td{background:var(--bg3)}
       <div class="chart-row chart-row-2" style="margin-bottom:14px">
         <div class="card">
           <div class="card-header"><div class="card-title">Avg Ridership by Line</div></div>
-          <div class="card-body" style="height:180px"><div class="chart-wrap" style="height:100%"><canvas id="chart-line-bar"></canvas></div></div>
+          <div class="card-body" style="height:180px"><canvas id="chart-line-bar"></canvas></div>
         </div>
         <div class="card">
           <div class="card-header"><div class="card-title">Line Operational Health</div></div>
-          <div class="card-body"><div id="line-health-list"></div></div>
+          <div class="card-body" style="overflow-y:auto;max-height:200px"><div id="line-health-list"></div></div>
         </div>
       </div>
       <div class="card">
         <div class="card-header">
           <div class="card-title">Station Rankings</div>
-          <select class="filter-sel btn-sm" id="rank-sort" style="margin-left:auto" onchange="renderRankings()">
+          <select class="filter-sel btn-sm" id="rank-sort" style="margin-left:auto" onchange="renderRankTable()">
             <option value="avgRidership">Sort: Ridership</option>
             <option value="priorityScore">Sort: Priority Score</option>
             <option value="growthFromBaseline">Sort: Growth</option>
             <option value="totalDisruptions">Sort: Disruptions</option>
           </select>
         </div>
-        <div class="tbl-wrap"><table id="rank-table"><thead></thead><tbody></tbody></table></div>
+        <div class="tbl-wrap">
+          <table id="rank-table">
+            <thead><tr><th>#</th><th>Station</th><th>Line</th><th>Type</th><th>Avg Ridership</th><th>vs Network</th><th>Peak Share</th><th>Growth</th><th>Priority</th><th></th></tr></thead>
+            <tbody id="rank-tbody"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- 5. PEAK ANALYSIS -->
+    <!-- ── PEAK ── -->
     <section class="section" id="sec-peak">
       <div class="sec-header">
         <div class="sec-title">Peak Analysis</div>
@@ -457,65 +487,75 @@ tr:hover td{background:var(--bg3)}
       </div>
       <div class="chart-row chart-row-2" style="margin-bottom:14px">
         <div class="card">
-          <div class="card-header"><div class="card-title">Peak Share % by Station</div><span id="peak-threshold-label" class="card-badge badge-high" style="margin-left:auto"></span></div>
-          <div class="card-body" style="height:260px"><div class="chart-wrap" style="height:100%"><canvas id="chart-peak-share"></canvas></div></div>
+          <div class="card-header"><div class="card-title">Peak Share % by Station</div><span id="peak-alert-label" class="card-badge badge-high" style="margin-left:auto"></span></div>
+          <div class="card-body" style="height:260px"><canvas id="chart-peak-share"></canvas></div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">Interchange Dependency</div><span class="card-badge badge-blue" style="margin-left:auto">Interchange stations</span></div>
-          <div class="card-body" style="height:260px"><div class="chart-wrap" style="height:100%"><canvas id="chart-interchange"></canvas></div></div>
+          <div class="card-header"><div class="card-title">Interchange Dependency</div><span class="card-badge badge-blue" style="margin-left:auto">Interchange only</span></div>
+          <div class="card-body" style="height:260px"><canvas id="chart-interchange"></canvas></div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-title">Peak Hour Patterns</div></div>
+        <div class="card-header"><div class="card-title">Peak Hour Pattern</div></div>
         <div class="card-body"><div id="peak-hour-grid"></div></div>
       </div>
     </section>
 
-    <!-- 6. RELIABILITY -->
+    <!-- ── RELIABILITY ── -->
     <section class="section" id="sec-reliability">
       <div class="sec-header">
         <div class="sec-title">Service Reliability</div>
-        <div class="sec-sub">Disruptions, delays, and wait time analysis across the network</div>
+        <div class="sec-sub">Disruptions, delays, and wait time across the network</div>
       </div>
-      <div class="kpi-grid" id="reliability-kpis" style="grid-template-columns:repeat(3,1fr)"></div>
+      <div id="reliability-kpis" class="kpi-grid" style="grid-template-columns:repeat(3,1fr)"></div>
       <div class="chart-row chart-row-2" style="margin-bottom:14px">
         <div class="card">
-          <div class="card-header"><div class="card-title">Total Disruptions by Station</div></div>
-          <div class="card-body" style="height:220px"><div class="chart-wrap" style="height:100%"><canvas id="chart-disruptions"></canvas></div></div>
+          <div class="card-header"><div class="card-title">Disruptions by Station</div></div>
+          <div class="card-body" style="height:220px"><canvas id="chart-disruptions"></canvas></div>
         </div>
         <div class="card">
           <div class="card-header"><div class="card-title">Avg Wait Time by Station</div></div>
-          <div class="card-body" style="height:220px"><div class="chart-wrap" style="height:100%"><canvas id="chart-wait"></canvas></div></div>
+          <div class="card-body" style="height:220px"><canvas id="chart-wait"></canvas></div>
         </div>
       </div>
       <div class="card">
         <div class="card-header"><div class="card-title">Reliability Detail</div></div>
-        <div class="tbl-wrap"><table id="reliability-table"><thead></thead><tbody></tbody></table></div>
+        <div class="tbl-wrap">
+          <table id="rel-table">
+            <thead><tr><th>Station</th><th>Line</th><th>Disruptions</th><th>Delay-mins</th><th>Disruption Rate</th><th>Avg Wait</th><th>Alert</th><th></th></tr></thead>
+            <tbody id="rel-tbody"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- 7. GROWTH -->
+    <!-- ── GROWTH ── -->
     <section class="section" id="sec-growth">
       <div class="sec-header">
         <div class="sec-title">Growth Analysis</div>
-        <div class="sec-sub">Demand trajectory — how stations are growing or declining from their baseline</div>
+        <div class="sec-sub">How stations are growing or declining from their baseline</div>
       </div>
       <div class="chart-row chart-row-2" style="margin-bottom:14px">
         <div class="card">
           <div class="card-header"><div class="card-title">Growth from Baseline (%)</div></div>
-          <div class="card-body" style="height:280px"><div class="chart-wrap" style="height:100%"><canvas id="chart-growth-bar"></canvas></div></div>
+          <div class="card-body" style="height:280px"><canvas id="chart-growth-bar"></canvas></div>
         </div>
         <div class="card">
           <div class="card-header"><div class="card-title">Growth Status Breakdown</div></div>
-          <div class="card-body" style="display:flex;align-items:center;gap:24px">
+          <div class="card-body" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
             <div style="width:150px;height:150px;flex-shrink:0"><canvas id="chart-growth-donut"></canvas></div>
-            <div id="growth-legend" class="donut-legend" style="flex:1"></div>
+            <div id="growth-legend" class="donut-legend" style="flex:1;min-width:120px"></div>
           </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header"><div class="card-title">Station Growth Detail</div></div>
-        <div class="tbl-wrap"><table id="growth-table"><thead></thead><tbody></tbody></table></div>
+        <div class="tbl-wrap">
+          <table id="growth-table">
+            <thead><tr><th>Station</th><th>Line</th><th>Growth %</th><th>Status</th><th>Avg Ridership</th><th>Priority</th><th></th></tr></thead>
+            <tbody id="growth-tbody"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -526,489 +566,388 @@ tr:hover td{background:var(--bg3)}
 <!-- DRILL-DOWN PANEL -->
 <div class="panel-overlay" id="overlay" onclick="closePanel()"></div>
 <div class="drilldown" id="drilldown">
-  <div class="dd-header" id="dd-header"></div>
+  <div class="dd-header" id="dd-header">
+    <div><div class="dd-title">Loading…</div></div>
+    <div class="dd-close" onclick="closePanel()">✕</div>
+  </div>
   <div class="dd-body" id="dd-body"></div>
 </div>
 
 <script>
 /* ================================================================
-   DMRC OPERATIONAL INTELLIGENCE DASHBOARD
-   ⚠ All data is SYNTHETIC — not actual DMRC performance data
+   DMRC Operational Intelligence Dashboard — robust rewrite
+   ⚠ SYNTHETIC DATA — not actual DMRC performance data
    ================================================================ */
-
-// ── CONFIG ──────────────────────────────────────────────────────
 const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzxr9SF7jsM_PVnRWH7P7M0W1-oKIm1sTYtoIEXg3vbiYREoksZqOOFeCHA9jibw-nX/exec';
 
-// ── STATE ───────────────────────────────────────────────────────
+// ── STATE ──────────────────────────────────────────────────────
 const S = {
   filters: { dateFrom:'', dateTo:'', line:'', stationType:'', dayType:'' },
   data: {},
   charts: {},
   activeTab: 'overview',
-  actionFilter: 'All',
-  rankSort: 'avgRidership'
+  actionFilter: 'All'
 };
 
-// ── LINE COLORS ─────────────────────────────────────────────────
-const LINE_COLOR = {
-  Yellow:'#FFD700', Blue:'#0087DC', Red:'#E31E24',
-  Violet:'#9333EA', Magenta:'#EC4899', Green:'#16A34A', Grey:'#8B9CC0'
-};
-const PRIORITY_COLOR = { Critical:'#FF4444', High:'#FF8C00', Medium:'#F5C400', Low:'#22C55E' };
-const PRIORITY_BG    = { Critical:'rgba(255,68,68,.13)', High:'rgba(255,140,0,.13)', Medium:'rgba(245,196,0,.1)', Low:'rgba(34,197,94,.12)' };
+// ── COLOURS ───────────────────────────────────────────────────
+const LC = { Yellow:'#B45309', Blue:'#1D6FDB', Red:'#D92B2B', Violet:'#6D28D9', Magenta:'#BE185D', Green:'#15803D', Grey:'#475569' };
+const PC = { Critical:'#D92B2B', High:'#E06200', Medium:'#B07800', Low:'#15803D' };
+const PB = { Critical:'rgba(217,43,43,.08)', High:'rgba(224,98,0,.08)', Medium:'rgba(176,120,0,.08)', Low:'rgba(21,128,61,.09)' };
 
-// ── UTILITIES ───────────────────────────────────────────────────
-function fmtL(n){ if(n==null||isNaN(n))return'—'; if(n>=10000000)return(n/10000000).toFixed(1)+'Cr'; if(n>=100000)return(n/100000).toFixed(1)+'L'; if(n>=1000)return(n/1000).toFixed(0)+'K'; return Math.round(n).toLocaleString('en-IN'); }
-function fmtN(n,d=0){ return n==null||isNaN(n)?'—':n.toFixed(d); }
-function fmtP(n){ return n==null||isNaN(n)?'—':n.toFixed(1)+'%'; }
+// ── FORMAT ────────────────────────────────────────────────────
+const fmtL = n => { if(n==null||isNaN(n))return'—'; if(n>=10000000)return(n/10000000).toFixed(1)+'Cr'; if(n>=100000)return(n/100000).toFixed(1)+'L'; if(n>=1000)return(n/1000).toFixed(0)+'K'; return Math.round(n).toLocaleString('en-IN'); };
+const fmtN = (n,d=1) => (n==null||isNaN(n)) ? '—' : Number(n).toFixed(d);
+const fmtP = n => (n==null||isNaN(n)) ? '—' : Number(n).toFixed(1)+'%';
 
-function badgeHtml(level){
-  const cls={Critical:'badge-crit',High:'badge-high',Medium:'badge-med',Low:'badge-low'};
-  return `<span class="badge ${cls[level]||'badge-blue'}">${level}</span>`;
+// ── BADGES / PILLS ────────────────────────────────────────────
+function badge(level){ const c={Critical:'badge-crit',High:'badge-high',Medium:'badge-med',Low:'badge-low'}; return `<span class="badge ${c[level]||'badge-blue'}">${level||'—'}</span>`; }
+function linePill(line){ const c=LC[line]||'#64748B'; return `<span class="line-pill" style="background:${c}18;color:${c};border:1px solid ${c}33">${line}</span>`; }
+function growthTag(s){ const m={'Rapid Growth':'gt-rapid','Growing':'gt-growing','Stable':'gt-stable','Declining':'gt-declining'}; return `<span class="growth-tag ${m[s]||'gt-stable'}">${s||'—'}</span>`; }
+function actionCat(cat){
+  const m={'Passenger Flow Optimization':'ac-flow','Service Reliability Review':'ac-reliability','Investigate Under-utilization':'ac-underutil','Peak-Hour Crowd Management':'ac-peak','Future Demand Monitoring':'ac-future','Monitor':'ac-monitor','Capacity Pressure':'ac-capacity','Peak-Hour Pressure':'ac-peak','Rapid Demand Growth':'ac-growth','Interchange/Passenger-Flow Pressure':'ac-interchange','Demand Under-utilization':'ac-underutil','Demand Decline':'ac-reliability'};
+  return `<span class="action-cat ${m[cat]||'ac-monitor'}">${cat||'—'}</span>`;
 }
-function linePill(line){
-  const c=LINE_COLOR[line]||'#8B9CC0';
-  return `<span class="line-pill" style="background:${c}22;color:${c};border:1px solid ${c}44">${line}</span>`;
+function urgencyColor(u){ if((u||'').includes('Immediate'))return'var(--crit)'; if((u||'').includes('Week'))return'var(--high)'; if((u||'').includes('Month'))return'var(--med)'; return'var(--t2)'; }
+function scoreBar(score, color='var(--accent)'){
+  const pct=Math.min(Math.max(score||0,0),100);
+  return `<div class="score-bar"><div class="score-track"><div class="score-fill" style="width:${pct}%;background:${color}"></div></div><div class="score-num" style="color:${color}">${Number(score||0).toFixed(0)}</div></div>`;
 }
-function growthTag(status){
-  const cls={Stable:'gt-stable','Rapid Growth':'gt-rapid',Growing:'gt-growing',Declining:'gt-declining'};
-  return `<span class="growth-tag ${cls[status]||'gt-stable'}">${status}</span>`;
+
+// ── CHART HELPERS ─────────────────────────────────────────────
+Chart.defaults.color='#64748B'; Chart.defaults.borderColor='#E3E8F0'; Chart.defaults.font.family='Inter';
+const AX = () => ({ x:{grid:{color:'#EBF0F7',drawBorder:false},ticks:{color:'#94A3B8',font:{size:10}}}, y:{grid:{color:'#EBF0F7',drawBorder:false},ticks:{color:'#94A3B8',font:{size:10}}} });
+const TT = { backgroundColor:'#0D1829', borderColor:'#1D2D45', borderWidth:1, titleColor:'#F8FAFC', bodyColor:'#94A3B8', padding:10, cornerRadius:7, boxPadding:4 };
+const CD = (extra={}) => ({ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:TT }, ...extra });
+function dc(k){ if(S.charts[k]){try{S.charts[k].destroy();}catch(e){} delete S.charts[k];} }
+
+// ── LOADING / ERROR UI ────────────────────────────────────────
+function setStep(msg){ const el=document.getElementById('load-step'); if(el)el.textContent=msg; console.log('[DMRC]', msg); }
+function hideLoader(){ const ol=document.getElementById('loading-overlay'); if(ol)ol.classList.add('hidden'); }
+function showError(msg){ console.error('[DMRC Error]', msg); const b=document.getElementById('error-banner'); if(b){b.classList.add('show'); const t=document.getElementById('err-msg-text'); if(t)t.textContent=msg;} document.getElementById('data-status').textContent='⚠ Error — see banner'; }
+
+// ── API ────────────────────────────────────────────────────────
+async function api(action, extra={}, timeoutMs=20000){
+  const u = new URL(WEBAPP_URL);
+  u.searchParams.set('action', action);
+  Object.entries(S.filters).forEach(([k,v])=>{ if(v) u.searchParams.set(k,v); });
+  Object.entries(extra).forEach(([k,v])=>u.searchParams.set(k,v));
+
+  const ctrl = new AbortController();
+  const tid  = setTimeout(()=>ctrl.abort(), timeoutMs);
+
+  try {
+    console.log('[DMRC] fetching:', action);
+    const r = await fetch(u.toString(), { redirect:'follow', signal:ctrl.signal });
+    clearTimeout(tid);
+    const text = await r.text();
+    // Detect GAS HTML error pages
+    if(text.trim().startsWith('<!') || text.trim().startsWith('<html')){
+      if(text.includes('accounts.google.com')||text.includes('signin')) throw new Error('GAS returned auth page — set deployment access to "Anyone"');
+      throw new Error('GAS returned HTML instead of JSON for: ' + action);
+    }
+    const data = JSON.parse(text);
+    if(data.status==='error') throw new Error(data.error || 'Backend error on ' + action);
+    console.log('[DMRC] OK:', action, '→', Object.keys(data).filter(k=>!['status','action','timestamp','notice'].includes(k)));
+    return data;
+  } catch(e) {
+    clearTimeout(tid);
+    if(e.name==='AbortError') throw new Error('Timeout (20s) on: ' + action + ' — GAS may be slow or unreachable');
+    throw e;
+  }
 }
-function actionCatHtml(cat){
-  const map={
-    'Passenger Flow Optimization':'ac-flow',
-    'Service Reliability Review':'ac-reliability',
-    'Investigate Under-utilization':'ac-underutil',
-    'Peak-Hour Crowd Management':'ac-peak',
-    'Future Demand Monitoring':'ac-future',
-    'Monitor':'ac-monitor',
-    'Capacity Pressure':'ac-capacity',
-    'Peak-Hour Pressure':'ac-peak',
-    'Rapid Demand Growth':'ac-growth',
-    'Interchange/Passenger-Flow Pressure':'ac-interchange',
-    'Service Reliability Issue':'ac-reliability',
-    'Demand Under-utilization':'ac-underutil',
-    'Demand Decline':'ac-reliability'
-  };
-  return `<span class="action-cat ${map[cat]||'ac-monitor'}">${cat}</span>`;
+
+// ── LOAD ALL ──────────────────────────────────────────────────
+async function loadAll(){
+  document.getElementById('data-status').textContent = 'Fetching data…';
+  const ol = document.getElementById('loading-overlay');
+  if(ol) ol.classList.remove('hidden');
+  document.getElementById('error-banner').classList.remove('show');
+
+  try {
+    // ── Step 1: Overview + Action Center ──────────────────────
+    setStep('Network overview + Action Center');
+    const [ov, ac] = await Promise.all([
+      api('getNetworkOverview'),
+      api('getActionCenter')
+    ]);
+    S.data.ov = ov; S.data.ac = ac;
+    safeRender('Overview',    ()=>renderOverview());
+    safeRender('ActionCenter',()=>renderActionCenter());
+    document.getElementById('nb-action').textContent = `${ov?.kpis?.criticalStations||0}C ${ov?.kpis?.highPriorityStations||0}H`;
+
+    // ── Step 2: Filter options ─────────────────────────────────
+    setStep('Filter options');
+    const fo = await api('getFilters');   // ← correct action name
+    S.data.fo = fo;
+    populateFilters(fo);
+
+    // ── Step 3: Line + Station data ───────────────────────────
+    setStep('Line & station data');
+    const [ls, sr, ww] = await Promise.all([
+      api('getLineSummary'),
+      api('getStationRankings', {limit:25}),
+      api('getWeekdayWeekend')
+    ]);
+    S.data.ls = ls; S.data.sr = sr; S.data.ww = ww;
+    safeRender('Lines', ()=>renderLines());
+
+    // ── Step 4: Charts data ───────────────────────────────────
+    setStep('Trend & analysis data');
+    const [td, lt, pa, ia, rd, ga] = await Promise.all([
+      api('getTrendData', {groupBy:'network'}),
+      api('getTrendData', {groupBy:'line'}),
+      api('getPeakAnalysis'),
+      api('getInterchangeAnalysis'),
+      api('getReliabilityData'),
+      api('getGrowthAnalysis')
+    ]);
+    S.data.td=td; S.data.lt=lt; S.data.pa=pa; S.data.ia=ia; S.data.rd=rd; S.data.ga=ga;
+    safeRender('Trends',      ()=>renderTrends());
+    safeRender('Peak',        ()=>renderPeak());
+    safeRender('Reliability', ()=>renderReliability());
+    safeRender('Growth',      ()=>renderGrowth());
+
+    // ── Done ──────────────────────────────────────────────────
+    hideLoader();
+    const dr = ov?.kpis?.dateRange;
+    document.getElementById('data-status').textContent = `${fo?.stations?.length||20} stations · ${dr?.days||31} days · Aug ${dr?.from?.slice(8)} – ${dr?.to?.slice(8)} 2026`;
+    document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    console.log('[DMRC] All data loaded ✅');
+
+  } catch(e) {
+    hideLoader();
+    showError(e.message);
+    console.error('[DMRC] loadAll failed:', e);
+  }
 }
-function trendArrow(pct){
+
+function safeRender(label, fn){
+  try { fn(); console.log('[DMRC] rendered:', label); }
+  catch(e) { console.error('[DMRC] render error in', label, ':', e); showError(`Render error (${label}): ${e.message}`); }
+}
+
+// ── POPULATE FILTERS ──────────────────────────────────────────
+function populateFilters(fo){
+  if(!fo?.lines) return;
+  const sel = document.getElementById('f-line');
+  fo.lines.forEach(l=>{ if(!sel.querySelector(`[value="${l}"]`)){ const o=document.createElement('option'); o.value=l; o.textContent=l+' Line'; sel.appendChild(o); } });
+  const ll = document.getElementById('line-legend');
+  if(ll) ll.innerHTML = fo.lines.map(l=>`<div class="line-dot"><div class="line-dot-color" style="background:${LC[l]||'#64748B'}"></div><span>${l}</span></div>`).join('');
+  if(fo.dateRange){
+    const fd=document.getElementById('f-from'), ft=document.getElementById('f-to');
+    if(fd&&!fd.value) fd.value = fo.dateRange.min||'';
+    if(ft&&!ft.value) ft.value = fo.dateRange.max||'';
+  }
+}
+
+// ── 1. OVERVIEW ───────────────────────────────────────────────
+function renderOverview(){
+  const k = S.data.ov?.kpis||{};
+  const pb= S.data.ov?.priorityBreakdown||{};
+  const ab= S.data.ov?.actionBreakdown||{};
+  const ls= S.data.ls?.lines||[];
+
+  // KPI Cards
+  const kpiDef=[
+    {label:'Total Ridership',      val:k.totalRidership,      fmt:'L',  note:`${trendSpan(k.trendPct)} vs period start`,     cls:'',          icon:'🚇'},
+    {label:'Avg Daily Ridership',  val:k.avgDailyRidership,   fmt:'L',  note:`${k.dateRange?.days||0} days observed`,        cls:'',          icon:'📅'},
+    {label:'Stations Need Attention',val:k.attentionStations, fmt:'int',note:`${k.criticalStations||0} Critical · ${k.highPriorityStations||0} High`, cls:k.criticalStations>0?'kpi-crit':'kpi-high', icon:'⚠'},
+    {label:'Rapid Growth Stations',val:k.rapidGrowthStations, fmt:'int',note:'Demand growing rapidly',                       cls:'kpi-high',  icon:'📈'},
+    {label:'Avg Wait Time',        val:k.avgWaitTime,         fmt:'f1', note:'Network average · minutes',                   cls:'',          icon:'⏱', suffix:' min'},
+    {label:'Service Disruptions',  val:k.totalDisruptions,    fmt:'int',note:`${k.totalDelayMinutes||0} total delay-minutes`,cls:k.totalDisruptions>30?'kpi-crit':'kpi-high', icon:'🔴'},
+    {label:'Network Avg Ridership',val:k.networkAvgRidership, fmt:'L',  note:'Per station per observation',                 cls:'',          icon:'⊞'},
+    {label:'Avg Priority Score',   val:k.avgPriorityScore,    fmt:'f1', note:'100 = needs most attention',                  cls:k.avgPriorityScore>55?'kpi-high':'kpi-med', icon:'◎'}
+  ];
+  const grid=document.getElementById('kpi-grid');
+  if(grid) grid.innerHTML = kpiDef.map(d=>{
+    const disp = d.fmt==='L'?fmtL(d.val):d.fmt==='f1'?fmtN(d.val,1):(d.val||0).toString();
+    return `<div class="kpi-card ${d.cls}"><div class="kpi-icon">${d.icon}</div><div class="kpi-label">${d.label}</div><div class="kpi-val${disp.length>6?' kpi-val-sm':''}">${disp}${d.suffix||''}</div><div class="kpi-footer">${d.note}</div></div>`;
+  }).join('');
+
+  // Priority donut
+  dc('priority');
+  const pc=document.getElementById('chart-priority');
+  const prL=['Critical','High','Medium','Low'], prC=[PC.Critical,PC.High,PC.Medium,PC.Low];
+  const prV=prL.map(l=>pb[l]||0);
+  if(pc && prV.some(v=>v>0)){
+    S.charts.priority=new Chart(pc,{type:'doughnut',data:{labels:prL,datasets:[{data:prV,backgroundColor:prC.map(c=>c+'BB'),borderColor:prC,borderWidth:2}]},options:{...CD(),cutout:'68%'}});
+  }
+  const leg=document.getElementById('priority-legend');
+  if(leg) leg.innerHTML = prL.map((l,i)=>`<div class="donut-item"><div class="donut-swatch" style="background:${prC[i]}"></div><div class="donut-label">${l}</div><div class="donut-val">${prV[i]}</div></div>`).join('');
+
+  // Action bar
+  dc('actions');
+  const ac2=document.getElementById('chart-actions');
+  const abK=Object.keys(ab).sort((a,b)=>ab[b]-ab[a]);
+  const abC=['#2558E8','#E06200','#D92B2B','#6D28D9','#BE185D','#15803D'];
+  if(ac2 && abK.length){
+    S.charts.actions=new Chart(ac2,{type:'bar',data:{labels:abK.map(k=>k.length>24?k.slice(0,22)+'…':k),datasets:[{data:abK.map(k=>ab[k]),backgroundColor:abC,borderRadius:4,borderSkipped:false}]},options:{...CD(),scales:{...AX(),x:{...AX().x,ticks:{...AX().x.ticks,maxRotation:30}},y:{...AX().y,ticks:{...AX().y.ticks,stepSize:1}}}}});
+  }
+
+  // Line snapshot
+  dc('line-snap');
+  const tb=document.getElementById('chart-line-snap');
+  if(tb && ls.length){
+    S.charts['line-snap']=new Chart(tb,{type:'bar',data:{labels:ls.map(l=>l.line),datasets:[{data:ls.map(l=>l.avgRidership),backgroundColor:ls.map(l=>LC[l.line]||'#2558E8'),borderRadius:5,borderSkipped:false}]},options:{...CD(),scales:{...AX(),y:{...AX().y,ticks:{...AX().y.ticks,callback:v=>fmtL(v)}}},plugins:{...CD().plugins,tooltip:{...TT,callbacks:{label:c=>`Avg: ${fmtL(c.raw)}`}}}}});
+  }
+}
+function trendSpan(pct){
+  if(!pct&&pct!==0)return'';
   if(pct>2) return`<span class="kpi-trend-up">↑ ${Math.abs(pct).toFixed(1)}%</span>`;
   if(pct<-2)return`<span class="kpi-trend-down">↓ ${Math.abs(pct).toFixed(1)}%</span>`;
   return`<span class="kpi-trend-flat">→ Stable</span>`;
 }
-function scoreBar(score,color='var(--accent)'){
-  const pct=Math.min(score,100);
-  return`<div class="score-bar"><div class="score-track"><div class="score-fill" style="width:${pct}%;background:${color}"></div></div><div class="score-num" style="color:${color}">${score.toFixed(0)}</div></div>`;
-}
-function animateCount(el, target, isFloat=false, prefix='', suffix=''){
-  let start=null;
-  const dur=900;
-  const step=ts=>{
-    if(!start)start=ts;
-    const p=Math.min((ts-start)/dur,1);
-    const ease=1-Math.pow(1-p,3);
-    const val=ease*target;
-    el.textContent=prefix+(isFloat?fmtL(val):fmtL(Math.floor(val)))+suffix;
-    if(p<1)requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
 
-// ── CHART DEFAULTS ───────────────────────────────────────────────
-Chart.defaults.color='#4E6580';
-Chart.defaults.borderColor='#111E32';
-Chart.defaults.font.family='Inter';
-function destroyChart(key){ if(S.charts[key]){S.charts[key].destroy();delete S.charts[key];} }
-function chartDefaults(extra={}){
-  return{
-    responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{backgroundColor:'#142033',borderColor:'#1B2D47',borderWidth:1,titleColor:'#E8EFF8',bodyColor:'#8FA6C4',padding:10,cornerRadius:6,boxPadding:4}},
-    ...extra
-  };
-}
-function axisDefaults(){
-  return{x:{grid:{color:'#111E32',drawBorder:false},ticks:{color:'#4E6580',font:{size:10}}},y:{grid:{color:'#111E32',drawBorder:false},ticks:{color:'#4E6580',font:{size:10}}}};
-}
-
-// ── API ──────────────────────────────────────────────────────────
-async function api(action, extra={}){
-  const u=new URL(WEBAPP_URL);
-  u.searchParams.set('action',action);
-  Object.entries(S.filters).forEach(([k,v])=>{ if(v) u.searchParams.set(k,v); });
-  Object.entries(extra).forEach(([k,v])=>u.searchParams.set(k,v));
-
-  // GAS web apps redirect through script.googleusercontent.com
-  // redirect:follow + manual JSON parse catches HTML error pages clearly
-  const r = await fetch(u.toString(), { redirect:'follow' });
-  if(!r.ok) throw new Error('HTTP ' + r.status + ' on ' + action);
-  const text = await r.text();
-  try {
-    return JSON.parse(text);
-  } catch(_) {
-    if(text.includes('accounts.google.com') || text.includes('signin'))
-      throw new Error('GAS requires sign-in — set deployment access to "Anyone"');
-    if(text.includes('Script function not found'))
-      throw new Error('doGet() not found in Code.gs');
-    throw new Error('Non-JSON from ' + action + ': ' + text.slice(0,120));
-  }
-}
-
-// ── LOAD ALL ─────────────────────────────────────────────────────
-async function loadAll(){
-  document.getElementById('data-status').textContent='Fetching data…';
-  showLoading();
-  try{
-    // Wave 1 — core data (most important panels)
-    const [ov,ac,fo] = await Promise.all([
-      api('getNetworkOverview'), api('getActionCenter'), api('getFilterOptions')
-    ]);
-    S.data={ov,ac,fo};
-    populateFilters(fo);
-    renderOverview();
-    renderActionCenter();
-    document.getElementById('data-status').textContent='Core data loaded — fetching detail…';
-
-    // Wave 2 — detail panels
-    const [ls,sr,td,pa,rd,ga,ww,lt,ia] = await Promise.all([
-      api('getLineSummary'),
-      api('getStationRankings',{limit:20}),
-      api('getTrendData',{groupBy:'network'}),
-      api('getPeakAnalysis'),
-      api('getReliabilityData'),
-      api('getGrowthAnalysis'),
-      api('getWeekdayWeekend'),
-      api('getTrendData',{groupBy:'line'}),
-      api('getInterchangeAnalysis')
-    ]);
-    S.data={ov,ac,ls,sr,td,pa,rd,ga,fo,ww,lt,ia};
-    // Render the remaining detail panels (overview+action already rendered in wave 1)
-    renderTrends();
-    renderLines();
-    renderPeak();
-    renderReliability();
-    renderGrowth();
-    document.getElementById('data-status').textContent=`${(S.data.fo?.stations?.length||0)} stations · ${S.data.ov?.kpis?.dateRange?.days||0} days loaded`;
-    document.getElementById('last-updated').textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('nb-action').textContent=(S.data.ac?.summary?.Critical||0)+'C '+(S.data.ac?.summary?.High||0)+'H';
-  }catch(e){
-    document.getElementById('data-status').textContent='Error: '+e.message;
-    document.querySelector('.content').innerHTML=`<div class="loader"><div class="empty-icon" style="font-size:40px">⚠️</div><p style="color:var(--med);font-size:14px;font-weight:600;margin-bottom:8px">Cannot reach the backend</p><p style="color:var(--t2);font-size:12px;max-width:400px;text-align:center;line-height:1.7">Error: <code style="background:var(--bg3);padding:2px 6px;border-radius:4px;color:var(--crit)">${e.message}</code><br><br>Make sure the GAS script is deployed as a <strong style="color:var(--t0)">Web App</strong> with access set to <strong style="color:var(--t0)">Anyone</strong>. See the setup guide below.</p><div style="margin-top:16px;background:var(--bg2);border:1px solid var(--b1);border-radius:10px;padding:16px 20px;text-align:left;max-width:400px;font-size:12px;color:var(--t1);line-height:1.8"><b style="color:var(--t0)">Quick Fix Checklist</b><br>1. Open your GAS script → Deploy → Manage deployments<br>2. Click ✏️ edit on your deployment<br>3. Set <b style="color:var(--accent)">Who has access</b> → <b style="color:var(--accent)">Anyone</b><br>4. Click Deploy → copy the new URL<br>5. Also check the <b style="color:var(--t0)">doGet()</b> function exists in Code.gs<br>6. Check GAS Execution log for errors</div></div>`;
-  }
-}
-
-function showLoading(){
-  ['overview','action','trends','lines','peak','reliability','growth'].forEach(t=>{
-    const s=document.getElementById('sec-'+t);
-    if(s&&s.classList.contains('active'))s.innerHTML=`<div class="loader"><div class="loader-track"><div class="loader-fill"></div></div><div class="loader-text">Loading operational data…</div></div>`;
-  });
-}
-
-function populateFilters(fo){
-  if(!fo)return;
-  const lSel=document.getElementById('f-line');
-  (fo.lines||[]).forEach(l=>{
-    if(!lSel.querySelector(`[value="${l}"]`)){const o=document.createElement('option');o.value=l;o.textContent=l+' Line';lSel.appendChild(o);}
-  });
-  // Line legend sidebar
-  const ll=document.getElementById('line-legend');
-  ll.innerHTML=(fo.lines||[]).map(l=>`<div class="line-dot"><div class="line-dot-color" style="background:${LINE_COLOR[l]||'#8B9CC0'}"></div><span>${l}</span></div>`).join('');
-  // Date defaults
-  if(fo.dateRange){
-    const fd=document.getElementById('f-from'), ft=document.getElementById('f-to');
-    if(!fd.value&&fo.dateRange.min)fd.value=fo.dateRange.min;
-    if(!ft.value&&fo.dateRange.max)ft.value=fo.dateRange.max;
-  }
-}
-
-// ── RENDER ALL ───────────────────────────────────────────────────
-function renderAll(){
-  renderOverview();
-  renderActionCenter();
-  renderTrends();
-  renderLines();
-  renderPeak();
-  renderReliability();
-  renderGrowth();
-}
-
-// ── 1. OVERVIEW ──────────────────────────────────────────────────
-function renderOverview(){
-  const d=S.data;
-  if(!d.ov)return;
-  // Restore section HTML if it was replaced by loader
-  const sec=document.getElementById('sec-overview');
-  if(!sec.querySelector('.kpi-grid')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Network Overview</div><div class="sec-sub">Network-wide operational snapshot for the selected period</div></div>
-    <div class="kpi-grid" id="kpi-grid"></div>
-    <div class="chart-row chart-row-2" style="margin-bottom:14px">
-      <div class="card"><div class="card-header"><div class="card-title">Priority Distribution</div></div><div class="card-body" style="display:flex;align-items:center;gap:24px"><div style="width:130px;height:130px;flex-shrink:0"><canvas id="chart-priority"></canvas></div><div class="donut-legend" id="priority-legend"></div></div></div>
-      <div class="card"><div class="card-header"><div class="card-title">Action Required by Category</div></div><div class="card-body" style="height:158px"><div class="chart-wrap" style="height:100%"><canvas id="chart-actions"></canvas></div></div></div>
-    </div>
-    <div class="card"><div class="card-header"><div class="card-title">Line Performance Snapshot</div></div><div class="card-body" style="height:180px"><div class="chart-wrap" style="height:100%"><canvas id="chart-type-bar"></canvas></div></div></div>`;
-  }
-  const k=d.ov.kpis||{};
-  const pb=d.ov.priorityBreakdown||{};
-  const kpis=[
-    {label:'Total Ridership',val:k.totalRidership,fmt:'lakh',note:trendArrow(k.trendPct),cls:'',icon:'🚇'},
-    {label:'Avg Daily Ridership',val:k.avgDailyRidership,fmt:'lakh',note:`${k.dateRange?.days||0} days observed`,cls:'',icon:'📅'},
-    {label:'Stations Needing Attention',val:k.attentionStations,fmt:'int',note:`${k.criticalStations||0} Critical · ${k.highPriorityStations||0} High`,cls:k.criticalStations>0?'kpi-crit':'kpi-high',icon:'⚠'},
-    {label:'Rapid Growth Stations',val:k.rapidGrowthStations,fmt:'int',note:'Demand growth > threshold',cls:k.rapidGrowthStations>0?'kpi-high':'kpi-low-ok',icon:'📈'},
-    {label:'Avg Wait Time',val:k.avgWaitTime,fmt:'dec1',suffix:' min',note:'Network average',cls:'',icon:'⏱'},
-    {label:'Total Disruptions',val:k.totalDisruptions,fmt:'int',note:`${k.totalDelayMinutes||0} total delay-minutes`,cls:k.totalDisruptions>20?'kpi-high':'kpi-low-ok',icon:'🔴'},
-    {label:'Network Avg Ridership',val:k.networkAvgRidership,fmt:'lakh',note:'Per station per observation',cls:'',icon:'⊞'},
-    {label:'Avg Priority Score',val:k.avgPriorityScore,fmt:'dec1',note:'Out of 100 — higher = more attention needed',cls:k.avgPriorityScore>55?'kpi-high':'kpi-med',icon:'◎'}
-  ];
-  const grid=document.getElementById('kpi-grid');
-  grid.innerHTML=kpis.map(kp=>{
-    const rawVal=kp.val;
-    const dispVal=kp.fmt==='lakh'?fmtL(rawVal):kp.fmt==='dec1'?fmtN(rawVal,1):(rawVal||0).toString();
-    return`<div class="kpi-card ${kp.cls}">
-      <div class="kpi-icon">${kp.icon}</div>
-      <div class="kpi-label">${kp.label}</div>
-      <div class="kpi-val${dispVal.length>6?' kpi-val-sm':''}" data-target="${rawVal}" data-fmt="${kp.fmt}" data-suffix="${kp.suffix||''}">${dispVal}${kp.suffix||''}</div>
-      <div class="kpi-footer">${kp.note||''}</div>
-    </div>`;
-  }).join('');
-
-  // Animate counters
-  grid.querySelectorAll('.kpi-val[data-target]').forEach(el=>{
-    const t=parseFloat(el.dataset.target)||0, fmt=el.dataset.fmt, suf=el.dataset.suffix||'';
-    animateCount(el,t,fmt==='lakh','',(fmt==='dec1'?'':'')+suf);
-    if(fmt==='dec1') setTimeout(()=>el.textContent=fmtN(t,1)+suf,920);
-  });
-
-  // Priority donut
-  const prColors=[PRIORITY_COLOR.Critical,PRIORITY_COLOR.High,PRIORITY_COLOR.Medium,PRIORITY_COLOR.Low];
-  const prLabels=['Critical','High','Medium','Low'];
-  const prVals=prLabels.map(l=>pb[l]||0);
-  destroyChart('priority');
-  const pc=document.getElementById('chart-priority');
-  if(pc){
-    S.charts.priority=new Chart(pc,{type:'doughnut',data:{labels:prLabels,datasets:[{data:prVals,backgroundColor:prColors.map(c=>c+'CC'),borderColor:prColors,borderWidth:2}]},options:{...chartDefaults(),cutout:'68%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} stations`}}}}});
-    const leg=document.getElementById('priority-legend');
-    if(leg) leg.innerHTML=prLabels.map((l,i)=>`<div class="donut-item"><div class="donut-swatch" style="background:${prColors[i]}"></div><div class="donut-label">${l}</div><div class="donut-val">${prVals[i]}</div></div>`).join('');
-  }
-
-  // Action category bar
-  const ab=d.ov.actionBreakdown||{};
-  const abKeys=Object.keys(ab).sort((a,b)=>ab[b]-ab[a]);
-  const abColors=['#FF4444','#FF8C00','#F5C400','#22C55E','#3E86FF','#EC4899'];
-  destroyChart('actions');
-  const ac2=document.getElementById('chart-actions');
-  if(ac2){
-    S.charts.actions=new Chart(ac2,{type:'bar',data:{labels:abKeys.map(k=>k.length>22?k.slice(0,20)+'…':k),datasets:[{data:abKeys.map(k=>ab[k]),backgroundColor:abColors,borderRadius:4,borderSkipped:false}]},options:{...chartDefaults(),scales:{...axisDefaults(),x:{...axisDefaults().x,ticks:{...axisDefaults().x.ticks,maxRotation:30}},y:{...axisDefaults().y,ticks:{...axisDefaults().y.ticks,stepSize:1}}}}});
-  }
-
-  // Line bar snapshot
-  const ls=d.ls?.lines||[];
-  destroyChart('type-bar');
-  const tb=document.getElementById('chart-type-bar');
-  if(tb){
-    S.charts['type-bar']=new Chart(tb,{type:'bar',data:{labels:ls.map(l=>l.line),datasets:[{data:ls.map(l=>l.avgRidership),backgroundColor:ls.map(l=>LINE_COLOR[l.line]||'#3E86FF'),borderRadius:5,borderSkipped:false}]},options:{...chartDefaults(),scales:{...axisDefaults()},plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:ctx=>`Avg Ridership: ${fmtL(ctx.raw)}`}}}}});
-  }
-}
-
-// ── 2. ACTION CENTER ─────────────────────────────────────────────
+// ── 2. ACTION CENTER ──────────────────────────────────────────
 function renderActionCenter(){
-  const d=S.data.ac;
-  if(!d)return;
-  const sec=document.getElementById('sec-action');
-  if(!sec.querySelector('#action-filter-tabs')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Action Center</div><div class="sec-sub">Stations requiring operational attention — ranked by priority score</div></div>
-    <div id="action-filter-tabs" style="display:flex;gap:6px;margin-bottom:14px"></div>
-    <div class="card"><div class="tbl-wrap"><table id="action-table"><thead></thead><tbody></tbody></table></div></div>`;
-  }
-  const opps=d.opportunities||[];
-  const levels=['All','Critical','High','Medium'];
+  const opps = S.data.ac?.opportunities||[];
+  const sum  = S.data.ac?.summary||{};
+
+  // Filter tabs
   const tabs=document.getElementById('action-filter-tabs');
-  tabs.innerHTML=levels.map(l=>{
-    const cnt=l==='All'?opps.length:opps.filter(o=>o.priorityLevel===l).length;
-    const active=S.actionFilter===l;
-    return`<button class="btn btn-sm ${active?'btn-primary':''}" onclick="setActionFilter('${l}')" style="${active?'':''}; border-left:3px solid ${l==='All'?'var(--accent)':PRIORITY_COLOR[l]||'var(--b2)'};">${l} <span style="opacity:.7">(${cnt})</span></button>`;
-  }).join('');
+  if(tabs){
+    const levels=['All','Critical','High','Medium'];
+    tabs.innerHTML=levels.map(l=>{
+      const cnt=l==='All'?opps.length:opps.filter(o=>o.priorityLevel===l).length;
+      const active=S.actionFilter===l;
+      const bc=l==='All'?'var(--accent)':PC[l]||'var(--b2)';
+      return `<button class="btn btn-sm${active?' btn-primary':''}" style="border-left:3px solid ${bc}" onclick="setActionFilter('${l}')">${l} <span style="opacity:.65">(${cnt})</span></button>`;
+    }).join('');
+  }
 
   const filtered=S.actionFilter==='All'?opps:opps.filter(o=>o.priorityLevel===S.actionFilter);
-  const tbl=document.getElementById('action-table');
-  tbl.querySelector('thead').innerHTML=`<tr>${['Station','Line','Priority','Issue Category','Avg Ridership','vs Network','Growth','Action Required','Urgency',''].map(h=>`<th>${h}</th>`).join('')}</tr>`;
-  tbl.querySelector('tbody').innerHTML=filtered.map(o=>`<tr>
-    <td><div class="tbl-station"><div class="station-dot" style="background:${LINE_COLOR[o.line]||'#8B9CC0'}"></div><div><div class="station-name">${o.station}</div><div class="station-type">${o.stationType}</div></div></div></td>
+  const tb=document.getElementById('action-tbody');
+  if(!tb) return;
+  tb.innerHTML=filtered.map(o=>`<tr>
+    <td><div class="tbl-station"><div class="station-dot" style="background:${LC[o.line]||'#64748B'}"></div><div><div class="station-name">${o.station}</div><div class="station-type">${o.stationType}</div></div></div></td>
     <td>${linePill(o.line)}</td>
-    <td>${badgeHtml(o.priorityLevel)}</td>
-    <td>${actionCatHtml(o.actionCategory)}</td>
+    <td>${badge(o.priorityLevel)}</td>
+    <td>${actionCat(o.actionCategory)}</td>
     <td><span class="metric-val">${fmtL(o.avgRidership)}</span></td>
     <td><span class="metric-val" style="color:${o.demandVsNetworkAvg>=150?'var(--crit)':o.demandVsNetworkAvg>=110?'var(--high)':o.demandVsNetworkAvg<75?'var(--low)':'var(--t1)'}">${fmtN(o.demandVsNetworkAvg,1)}%</span></td>
     <td>${growthTag(o.growthStatus)}</td>
-    <td><span class="action-cat ${actionCatClass(o.issueCategory)}">${o.issueCategory}</span></td>
-    <td><span style="font-size:11px;color:${urgencyColor(o.urgency)}">${o.urgency}</span></td>
+    <td><span style="font-size:11px;font-weight:600;color:${urgencyColor(o.urgency)}">${o.urgency}</span></td>
     <td><button class="btn btn-sm" onclick="openDrilldown('${o.station}')">Details →</button></td>
-  </tr>`).join('');
+  </tr>`).join('') || `<tr><td colspan="9" class="empty-state"><div class="empty-text">No stations match this filter</div></td></tr>`;
 }
-function actionCatClass(cat){
-  const m={'Capacity Pressure':'ac-capacity','Peak-Hour Pressure':'ac-peak','Rapid Demand Growth':'ac-growth','Interchange/Passenger-Flow Pressure':'ac-interchange','Service Reliability Issue':'ac-reliability','Demand Under-utilization':'ac-underutil','Demand Decline':'ac-reliability','Monitor':'ac-monitor'};
-  return m[cat]||'ac-monitor';
-}
-function urgencyColor(u){
-  if((u||'').includes('Immediate'))return'var(--crit)';
-  if((u||'').includes('Week'))return'var(--high)';
-  if((u||'').includes('Month'))return'var(--med)';
-  return'var(--t2)';
-}
-function setActionFilter(f){ S.actionFilter=f; renderActionCenter(); }
+function setActionFilter(f){ S.actionFilter=f; safeRender('ActionCenter',()=>renderActionCenter()); }
 
-// ── 3. TRENDS ────────────────────────────────────────────────────
+// ── 3. TRENDS ─────────────────────────────────────────────────
 function renderTrends(){
-  const sec=document.getElementById('sec-trends');
-  if(!sec.querySelector('.card')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Network Trends</div><div class="sec-sub">Ridership trajectory across the observation period</div></div>
-    <div class="card" style="margin-bottom:14px"><div class="card-header"><div class="card-title">Daily Network Ridership</div><span style="margin-left:auto;font-size:11px;color:var(--t2)">● Weekday &nbsp; ◌ Weekend</span></div><div class="card-body" style="height:240px"><div class="chart-wrap" style="height:100%"><canvas id="chart-network-trend"></canvas></div></div></div>
-    <div class="chart-row chart-row-2"><div class="card"><div class="card-header"><div class="card-title">Line-wise Ridership Trend</div></div><div class="card-body" style="height:200px"><div class="chart-wrap" style="height:100%"><canvas id="chart-line-trend"></canvas></div></div></div>
-    <div class="card"><div class="card-header"><div class="card-title">Weekday vs Weekend — Top 8 Stations</div></div><div class="card-body" style="height:200px"><div class="chart-wrap" style="height:100%"><canvas id="chart-wd-we"></canvas></div></div></div></div>`;
-  }
   const td=S.data.td; const lt=S.data.lt; const ww=S.data.ww;
   // Network trend
   if(td?.series){
-    const s=td.series;
-    const wdIdx=s.map((r,i)=>r.dayType==='Weekday'?i:-1).filter(i=>i>=0);
-    const weIdx=s.map((r,i)=>r.dayType==='Weekend'?i:-1).filter(i=>i>=0);
-    destroyChart('net-trend');
+    dc('net-trend');
     const c=document.getElementById('chart-network-trend');
-    if(c) S.charts['net-trend']=new Chart(c,{type:'line',data:{labels:s.map(r=>r.date.slice(5)),datasets:[
-      {label:'Ridership',data:s.map(r=>r.totalRidership),borderColor:'#3E86FF',backgroundColor:'rgba(62,134,255,.07)',fill:true,tension:.35,borderWidth:2,pointBackgroundColor:s.map(r=>r.dayType==='Weekday'?'#3E86FF':'#FF8C00'),pointRadius:4,pointHoverRadius:6}
-    ]},options:{...chartDefaults(),scales:{...axisDefaults(),y:{...axisDefaults().y,ticks:{...axisDefaults().y.ticks,callback:v=>fmtL(v)}}},plugins:{...chartDefaults().plugins,legend:{display:false},tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:ctx=>`${ctx.dataset.label}: ${fmtL(ctx.raw)}`}}}}});
+    const s=td.series;
+    if(c) S.charts['net-trend']=new Chart(c,{type:'line',data:{labels:s.map(r=>r.date.slice(5)),datasets:[{label:'Ridership',data:s.map(r=>r.totalRidership),borderColor:'#2558E8',backgroundColor:'rgba(37,88,232,.07)',fill:true,tension:.35,borderWidth:2,pointBackgroundColor:s.map(r=>r.dayType==='Weekday'?'#2558E8':'#E06200'),pointRadius:4,pointHoverRadius:6}]},options:{...CD(),scales:{...AX(),y:{...AX().y,ticks:{...AX().y.ticks,callback:v=>fmtL(v)}}}}});
   }
   // Line trend
-  if(lt?.trends){
-    const lines=Object.keys(lt.trends); const allDates=[...new Set(lines.flatMap(l=>lt.trends[l].map(r=>r.date)))].sort();
-    destroyChart('line-trend');
+  if(lt?.byLine){
+    dc('line-trend');
     const c2=document.getElementById('chart-line-trend');
-    if(c2) S.charts['line-trend']=new Chart(c2,{type:'line',data:{labels:allDates.map(d=>d.slice(5)),datasets:lines.map(l=>({label:l,data:allDates.map(d=>lt.trends[l].find(r=>r.date===d)?.totalRidership||null),borderColor:LINE_COLOR[l]||'#3E86FF',backgroundColor:'transparent',tension:.35,borderWidth:1.5,pointRadius:0,spanGaps:true}))},options:{...chartDefaults(),scales:{...axisDefaults(),y:{...axisDefaults().y,ticks:{...axisDefaults().y.ticks,callback:v=>fmtL(v)}}},plugins:{...chartDefaults().plugins,legend:{display:true,labels:{color:'#4E6580',font:{size:10},boxWidth:12,padding:10}}}}});
+    const lines=Object.keys(lt.byLine);
+    const allDates=[...new Set(lines.flatMap(l=>lt.byLine[l].map(r=>r.date)))].sort();
+    if(c2) S.charts['line-trend']=new Chart(c2,{type:'line',data:{labels:allDates.map(d=>d.slice(5)),datasets:lines.map(l=>({label:l,data:allDates.map(d=>lt.byLine[l].find(r=>r.date===d)?.totalRidership||null),borderColor:LC[l]||'#2558E8',backgroundColor:'transparent',tension:.35,borderWidth:1.8,pointRadius:0,spanGaps:true}))},options:{...CD(),scales:{...AX(),y:{...AX().y,ticks:{...AX().y.ticks,callback:v=>fmtL(v)}}},plugins:{...CD().plugins,legend:{display:true,labels:{color:'#64748B',font:{size:10},boxWidth:12,padding:10}}}}});
   }
   // WD vs WE
   if(ww?.comparison){
-    const top=ww.comparison.slice(0,8);
-    destroyChart('wd-we');
+    dc('wd-we');
     const c3=document.getElementById('chart-wd-we');
-    if(c3) S.charts['wd-we']=new Chart(c3,{type:'bar',data:{labels:top.map(r=>r.station.length>10?r.station.slice(0,10)+'…':r.station),datasets:[{label:'Weekday',data:top.map(r=>r.weekdayAvgRidership),backgroundColor:'rgba(62,134,255,.7)',borderRadius:3,borderSkipped:false},{label:'Weekend',data:top.map(r=>r.weekendAvgRidership),backgroundColor:'rgba(255,140,0,.7)',borderRadius:3,borderSkipped:false}]},options:{...chartDefaults(),scales:{...axisDefaults(),y:{...axisDefaults().y,ticks:{...axisDefaults().y.ticks,callback:v=>fmtL(v)}}},plugins:{...chartDefaults().plugins,legend:{display:true,labels:{color:'#4E6580',font:{size:10},boxWidth:10}}}}});
+    const top=ww.comparison.slice(0,8);
+    if(c3) S.charts['wd-we']=new Chart(c3,{type:'bar',data:{labels:top.map(r=>r.station.length>10?r.station.slice(0,10)+'…':r.station),datasets:[{label:'Weekday',data:top.map(r=>r.weekdayAvgRidership),backgroundColor:'rgba(37,88,232,.7)',borderRadius:3,borderSkipped:false},{label:'Weekend',data:top.map(r=>r.weekendAvgRidership),backgroundColor:'rgba(224,98,0,.7)',borderRadius:3,borderSkipped:false}]},options:{...CD(),scales:{...AX(),y:{...AX().y,ticks:{...AX().y.ticks,callback:v=>fmtL(v)}}},plugins:{...CD().plugins,legend:{display:true,labels:{color:'#64748B',font:{size:10},boxWidth:10,padding:8}}}}});
   }
 }
 
-// ── 4. LINES ─────────────────────────────────────────────────────
+// ── 4. LINES ──────────────────────────────────────────────────
 function renderLines(){
-  const d=S.data; if(!d.ls||!d.sr)return;
-  const sec=document.getElementById('sec-lines');
-  if(!sec.querySelector('.chart-row')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Lines & Stations</div><div class="sec-sub">Line-level aggregates and station performance rankings</div></div>
-    <div class="chart-row chart-row-2" style="margin-bottom:14px">
-      <div class="card"><div class="card-header"><div class="card-title">Avg Ridership by Line</div></div><div class="card-body" style="height:180px"><div class="chart-wrap" style="height:100%"><canvas id="chart-line-bar"></canvas></div></div></div>
-      <div class="card"><div class="card-header"><div class="card-title">Line Operational Health</div></div><div class="card-body"><div id="line-health-list"></div></div></div>
-    </div>
-    <div class="card"><div class="card-header"><div class="card-title">Station Rankings</div><select class="filter-sel btn-sm" id="rank-sort" style="margin-left:auto" onchange="renderRankings()"><option value="avgRidership">Sort: Ridership</option><option value="priorityScore">Sort: Priority Score</option><option value="growthFromBaseline">Sort: Growth</option><option value="totalDisruptions">Sort: Disruptions</option></select></div><div class="tbl-wrap"><table id="rank-table"><thead></thead><tbody></tbody></table></div></div>`;
-  }
-  const ls=d.ls.lines||[];
-  destroyChart('line-bar');
+  const ls=S.data.ls?.lines||[]; const sr=S.data.sr?.stations||[];
+  // Bar
+  dc('line-bar');
   const lb=document.getElementById('chart-line-bar');
-  if(lb) S.charts['line-bar']=new Chart(lb,{type:'bar',data:{labels:ls.map(l=>l.line),datasets:[{data:ls.map(l=>l.avgRidership),backgroundColor:ls.map(l=>LINE_COLOR[l.line]||'#3E86FF'),borderRadius:5,borderSkipped:false}]},options:{...chartDefaults(),indexAxis:'y',scales:{x:{...axisDefaults().x,ticks:{...axisDefaults().x.ticks,callback:v=>fmtL(v)}},y:axisDefaults().y},plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:ctx=>`Avg: ${fmtL(ctx.raw)}`}}}}});
-
+  if(lb && ls.length) S.charts['line-bar']=new Chart(lb,{type:'bar',data:{labels:ls.map(l=>l.line),datasets:[{data:ls.map(l=>l.avgRidership),backgroundColor:ls.map(l=>LC[l.line]||'#2558E8'),borderRadius:5,borderSkipped:false}]},options:{...CD(),indexAxis:'y',scales:{x:{...AX().x,ticks:{...AX().x.ticks,callback:v=>fmtL(v)}},y:AX().y},plugins:{...CD().plugins,tooltip:{...TT,callbacks:{label:c=>`Avg: ${fmtL(c.raw)}`}}}}});
+  // Health list
   const hl=document.getElementById('line-health-list');
   if(hl) hl.innerHTML=ls.map(l=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--b0)">
-    <div style="width:10px;height:10px;border-radius:50%;background:${LINE_COLOR[l.line]||'#8B9CC0'};flex-shrink:0"></div>
-    <div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--t0)">${l.line} Line</div><div style="font-size:10px;color:var(--t2)">${l.stationCount} stations · ${fmtP(l.avgPeakSharePct)} peak</div></div>
-    <div style="text-align:right"><div style="font-size:12px;font-weight:600;color:var(--t0)">${fmtL(l.avgRidership)}</div><div style="font-size:10px;color:var(--t2)">avg/obs</div></div>
-    <div style="width:80px">${scoreBar(l.avgPriorityScore,l.attentionStations>0?'var(--high)':'var(--low)')}</div>
+    <div style="width:10px;height:10px;border-radius:50%;background:${LC[l.line]||'#64748B'};flex-shrink:0"></div>
+    <div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--t0)">${l.line} Line</div><div style="font-size:10px;color:var(--t2)">${l.stationCount} stations · ${fmtP(l.avgPeakSharePct)} peak · ${l.attentionStations} need attention</div></div>
+    <div style="width:80px">${scoreBar(l.avgPriorityScore, l.attentionStations>0?'var(--high)':'var(--low)')}</div>
   </div>`).join('');
-  renderRankings();
+  // Rankings table
+  renderRankTable();
 }
-function renderRankings(){
-  const sel=document.getElementById('rank-sort'); if(!sel)return;
-  S.rankSort=sel.value;
-  const stations=(S.data.sr?.stations||[]).slice().sort((a,b)=>b[S.rankSort]-a[S.rankSort]);
-  const tbl=document.getElementById('rank-table'); if(!tbl)return;
-  tbl.querySelector('thead').innerHTML=`<tr>${['Station','Line','Type','Avg Ridership','vs Network','Peak Share','Growth','Priority',''].map(h=>`<th>${h}</th>`).join('')}</tr>`;
-  tbl.querySelector('tbody').innerHTML=stations.slice(0,20).map((s,i)=>`<tr>
-    <td><div class="tbl-station"><span style="font-size:11px;color:var(--t2);min-width:18px">${i+1}</span><div class="station-dot" style="background:${LINE_COLOR[s.line]||'#8B9CC0'}"></div><div class="station-name">${s.station}</div></div></td>
+function renderRankTable(){
+  const sortBy=document.getElementById('rank-sort')?.value||'avgRidership';
+  const stations=(S.data.sr?.stations||[]).slice().sort((a,b)=>b[sortBy]-a[sortBy]);
+  const tb=document.getElementById('rank-tbody'); if(!tb) return;
+  tb.innerHTML=stations.slice(0,20).map((s,i)=>`<tr>
+    <td style="color:var(--t2);font-size:11px">${i+1}</td>
+    <td><div class="tbl-station"><div class="station-dot" style="background:${LC[s.line]||'#64748B'}"></div><div class="station-name">${s.station}</div></div></td>
     <td>${linePill(s.line)}</td>
     <td><span style="font-size:11px;color:var(--t2)">${s.stationType}</span></td>
     <td><span class="metric-val">${fmtL(s.avgRidership)}</span></td>
     <td><span class="metric-val" style="color:${s.demandVsNetworkAvg>=150?'var(--crit)':s.demandVsNetworkAvg>=110?'var(--high)':s.demandVsNetworkAvg<75?'var(--low)':'var(--t1)'}">${fmtN(s.demandVsNetworkAvg,1)}%</span></td>
     <td><span class="metric-val">${fmtP(s.avgPeakSharePct)}</span></td>
     <td>${growthTag(s.growthStatus)}</td>
-    <td>${badgeHtml(s.priorityLevel)}</td>
+    <td>${badge(s.priorityLevel)}</td>
     <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">→</button></td>
   </tr>`).join('');
 }
 
-// ── 5. PEAK ──────────────────────────────────────────────────────
+// ── 5. PEAK ───────────────────────────────────────────────────
 function renderPeak(){
-  const pa=S.data.pa; const ia=S.data.ia; if(!pa)return;
-  const sec=document.getElementById('sec-peak');
-  if(!sec.querySelector('.chart-row')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Peak Analysis</div><div class="sec-sub">Peak-hour demand concentration and interchange dependency</div></div>
-    <div class="chart-row chart-row-2" style="margin-bottom:14px">
-      <div class="card"><div class="card-header"><div class="card-title">Peak Share % by Station</div><span id="peak-threshold-label" class="card-badge badge-high" style="margin-left:auto">Alert ≥ ${pa.alertThreshold||45}%</span></div><div class="card-body" style="height:260px"><div class="chart-wrap" style="height:100%"><canvas id="chart-peak-share"></canvas></div></div></div>
-      <div class="card"><div class="card-header"><div class="card-title">Interchange Dependency</div><span class="card-badge badge-blue" style="margin-left:auto">Interchange stations</span></div><div class="card-body" style="height:260px"><div class="chart-wrap" style="height:100%"><canvas id="chart-interchange"></canvas></div></div></div>
-    </div>
-    <div class="card"><div class="card-header"><div class="card-title">Peak Hour Pattern by Station</div></div><div class="card-body"><div id="peak-hour-grid"></div></div></div>`;
-  }
-  const stations=pa.stations||[];
-  destroyChart('peak-share');
-  const pc=document.getElementById('chart-peak-share');
-  if(pc) S.charts['peak-share']=new Chart(pc,{type:'bar',data:{labels:stations.map(s=>s.station.length>12?s.station.slice(0,12)+'…':s.station),datasets:[{data:stations.map(s=>s.avgPeakSharePct),backgroundColor:stations.map(s=>s.peakAlert?'rgba(255,140,0,.75)':'rgba(62,134,255,.55)'),borderRadius:3,borderSkipped:false}]},options:{...chartDefaults(),indexAxis:'y',scales:{x:{...axisDefaults().x,max:60,ticks:{...axisDefaults().x.ticks,callback:v=>v+'%'}},y:axisDefaults().y},plugins:{...chartDefaults().plugins,annotation:{annotations:{threshold:{type:'line',xMin:pa.alertThreshold,xMax:pa.alertThreshold,borderColor:'rgba(255,140,0,.6)',borderWidth:1,borderDash:[4,3]}}}},tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:ctx=>`Peak Share: ${ctx.raw.toFixed(1)}%`}}}}});
+  const pa=S.data.pa; const ia=S.data.ia;
+  const lbl=document.getElementById('peak-alert-label');
+  if(lbl) lbl.textContent=`Alert ≥ ${pa?.alertThreshold||45}%`;
 
-  if(ia?.stations){
-    const is=ia.stations;
-    destroyChart('interchange');
+  if(pa?.stations){
+    dc('peak-share');
+    const pc=document.getElementById('chart-peak-share');
+    const st=pa.stations;
+    if(pc) S.charts['peak-share']=new Chart(pc,{type:'bar',data:{labels:st.map(s=>s.station.length>13?s.station.slice(0,11)+'…':s.station),datasets:[{data:st.map(s=>s.avgPeakSharePct),backgroundColor:st.map(s=>s.peakAlert?'rgba(224,98,0,.75)':'rgba(37,88,232,.55)'),borderRadius:3,borderSkipped:false}]},options:{...CD(),indexAxis:'y',scales:{x:{...AX().x,max:65,ticks:{...AX().x.ticks,callback:v=>v+'%'}},y:AX().y},plugins:{...CD().plugins,tooltip:{...TT,callbacks:{label:c=>`Peak Share: ${c.raw.toFixed(1)}%`}}}}});
+  }
+  if(ia?.stations?.length){
+    dc('interchange');
     const ic=document.getElementById('chart-interchange');
-    if(ic) S.charts.interchange=new Chart(ic,{type:'bar',data:{labels:is.map(s=>s.station.length>12?s.station.slice(0,12)+'…':s.station),datasets:[{data:is.map(s=>s.avgInterchangeSharePct),backgroundColor:is.map(s=>s.interchangeAlert?'rgba(236,72,153,.7)':'rgba(62,134,255,.5)'),borderRadius:3,borderSkipped:false}]},options:{...chartDefaults(),indexAxis:'y',scales:{x:{...axisDefaults().x,ticks:{...axisDefaults().x.ticks,callback:v=>v+'%'}},y:axisDefaults().y},plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:ctx=>`Interchange Share: ${ctx.raw.toFixed(1)}%`}}}}});
+    const is=ia.stations;
+    if(ic) S.charts.interchange=new Chart(ic,{type:'bar',data:{labels:is.map(s=>s.station.length>13?s.station.slice(0,11)+'…':s.station),datasets:[{data:is.map(s=>s.avgInterchangeSharePct),backgroundColor:is.map(s=>s.interchangeAlert?'rgba(190,24,93,.7)':'rgba(37,88,232,.5)'),borderRadius:3,borderSkipped:false}]},options:{...CD(),indexAxis:'y',scales:{x:{...AX().x,ticks:{...AX().x.ticks,callback:v=>v+'%'}},y:AX().y},plugins:{...CD().plugins,tooltip:{...TT,callbacks:{label:c=>`Interchange: ${c.raw.toFixed(1)}%`}}}}});
+  } else {
+    const ic=document.getElementById('chart-interchange');
+    if(ic){ ic.style.display='none'; ic.parentElement.innerHTML='<div class="empty-state"><div class="empty-text">No interchange stations in current filter</div></div>'; }
   }
-
-  // Peak hour grid
   const phg=document.getElementById('peak-hour-grid');
-  if(phg){
-    const byHour={'08:00-10:00':[],'17:00-19:00':[]};
-    stations.forEach(s=>(s.peakHours||[]).forEach(h=>{if(byHour[h])byHour[h].push(s.station);}));
-    phg.innerHTML=Object.entries(byHour).map(([h,st])=>`<div style="margin-bottom:12px"><div style="font-size:11px;color:var(--high);font-weight:600;margin-bottom:6px">⏰ Peak: ${h}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${st.map(s=>`<span style="background:var(--bg3);border:1px solid var(--b1);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--t1)">${s}</span>`).join('')||'<span style="color:var(--t2);font-size:11px">None in selection</span>'}</div></div>`).join('');
+  if(phg && pa?.stations){
+    const byHour={};
+    pa.stations.forEach(s=>(s.peakHours||[]).forEach(h=>{ if(!byHour[h])byHour[h]=[]; byHour[h].push(s.station); }));
+    phg.innerHTML=Object.entries(byHour).map(([h,st])=>`<div style="margin-bottom:12px"><div style="font-size:11px;color:var(--high);font-weight:700;margin-bottom:6px">⏰ Peak: ${h}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${st.map(s=>`<span style="background:var(--bg3);border:1px solid var(--b0);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--t1);font-weight:500">${s}</span>`).join('')}</div></div>`).join('') || '<div style="color:var(--t2);font-size:12px">No peak hour data available</div>';
   }
 }
 
-// ── 6. RELIABILITY ───────────────────────────────────────────────
+// ── 6. RELIABILITY ────────────────────────────────────────────
 function renderReliability(){
-  const rd=S.data.rd; if(!rd)return;
-  const sec=document.getElementById('sec-reliability');
-  if(!sec.querySelector('.kpi-grid')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Service Reliability</div><div class="sec-sub">Disruptions, delays, and wait time analysis across the network</div></div>
-    <div class="kpi-grid" id="reliability-kpis" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px"></div>
-    <div class="chart-row chart-row-2" style="margin-bottom:14px">
-      <div class="card"><div class="card-header"><div class="card-title">Total Disruptions by Station</div></div><div class="card-body" style="height:220px"><div class="chart-wrap" style="height:100%"><canvas id="chart-disruptions"></canvas></div></div></div>
-      <div class="card"><div class="card-header"><div class="card-title">Avg Wait Time by Station</div></div><div class="card-body" style="height:220px"><div class="chart-wrap" style="height:100%"><canvas id="chart-wait"></canvas></div></div></div>
-    </div>
-    <div class="card"><div class="card-header"><div class="card-title">Reliability Detail</div></div><div class="tbl-wrap"><table id="reliability-table"><thead></thead><tbody></tbody></table></div></div>`;
-  }
+  const rd=S.data.rd; if(!rd) return;
   const n=rd.networkTotals||{};
-  const rKpis=[
-    {label:'Total Disruptions',val:n.totalDisruptions||0,note:'Network total',cls:n.totalDisruptions>30?'kpi-crit':'kpi-high'},
-    {label:'Total Delay-Minutes',val:n.totalDelayMinutes||0,note:'Network total',cls:n.totalDelayMinutes>200?'kpi-high':'kpi-med'},
-    {label:'Stations w/ Disruptions',val:n.stationsWithDisruptions||0,note:'Out of '+(S.data.fo?.stations?.length||20),cls:n.stationsWithDisruptions>10?'kpi-high':''}
-  ];
   const rkg=document.getElementById('reliability-kpis');
-  if(rkg) rkg.innerHTML=rKpis.map(k=>`<div class="kpi-card ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val" style="font-size:26px">${k.val}</div><div class="kpi-footer">${k.note}</div></div>`).join('');
+  if(rkg) rkg.innerHTML=[
+    {label:'Total Disruptions',      val:n.totalDisruptions||0,      note:'Network total',                                             cls:n.totalDisruptions>30?'kpi-crit':'kpi-high'},
+    {label:'Total Delay-Minutes',     val:n.totalDelayMinutes||0,     note:'Network total',                                             cls:n.totalDelayMinutes>200?'kpi-high':'kpi-med'},
+    {label:'Stations w/ Disruptions', val:n.stationsWithDisruptions||0,note:`Out of ${S.data.fo?.stations?.length||20} stations`,       cls:n.stationsWithDisruptions>10?'kpi-high':''}
+  ].map(d=>`<div class="kpi-card ${d.cls}"><div class="kpi-label">${d.label}</div><div class="kpi-val" style="font-size:26px">${d.val}</div><div class="kpi-footer">${d.note}</div></div>`).join('');
 
-  const st=rd.stations||[];
-  const top10=st.slice(0,10);
-  destroyChart('disruptions');
-  const dc=document.getElementById('chart-disruptions');
-  if(dc) S.charts.disruptions=new Chart(dc,{type:'bar',data:{labels:top10.map(s=>s.station.length>12?s.station.slice(0,12)+'…':s.station),datasets:[{data:top10.map(s=>s.totalDisruptions),backgroundColor:top10.map(s=>s.reliabilityAlert?'rgba(255,68,68,.7)':'rgba(62,134,255,.5)'),borderRadius:3,borderSkipped:false}]},options:{...chartDefaults(),scales:{...axisDefaults(),x:{...axisDefaults().x,ticks:{...axisDefaults().x.ticks,maxRotation:35}}}}});
+  const st=rd.stations||[]; const top=st.slice(0,10);
+  dc('disruptions');
+  const dc2=document.getElementById('chart-disruptions');
+  if(dc2 && top.length) S.charts.disruptions=new Chart(dc2,{type:'bar',data:{labels:top.map(s=>s.station.length>12?s.station.slice(0,10)+'…':s.station),datasets:[{data:top.map(s=>s.totalDisruptions),backgroundColor:top.map(s=>s.reliabilityAlert?'rgba(217,43,43,.75)':'rgba(37,88,232,.55)'),borderRadius:3,borderSkipped:false}]},options:{...CD(),scales:{...AX(),x:{...AX().x,ticks:{...AX().x.ticks,maxRotation:35}}}}});
 
-  destroyChart('wait');
+  dc('wait');
   const wc=document.getElementById('chart-wait');
-  if(wc) S.charts.wait=new Chart(wc,{type:'bar',data:{labels:top10.map(s=>s.station.length>12?s.station.slice(0,12)+'…':s.station),datasets:[{data:top10.map(s=>s.avgWaitTime),backgroundColor:'rgba(245,196,0,.6)',borderRadius:3,borderSkipped:false}]},options:{...chartDefaults(),scales:{...axisDefaults(),x:{...axisDefaults().x,ticks:{...axisDefaults().x.ticks,maxRotation:35}},y:{...axisDefaults().y,ticks:{...axisDefaults().y.ticks,callback:v=>v+' min'}}}}});
+  if(wc && top.length) S.charts.wait=new Chart(wc,{type:'bar',data:{labels:top.map(s=>s.station.length>12?s.station.slice(0,10)+'…':s.station),datasets:[{data:top.map(s=>s.avgWaitTime),backgroundColor:'rgba(176,120,0,.65)',borderRadius:3,borderSkipped:false}]},options:{...CD(),scales:{...AX(),x:{...AX().x,ticks:{...AX().x.ticks,maxRotation:35}},y:{...AX().y,ticks:{...AX().y.ticks,callback:v=>v+' min'}}}}});
 
-  const rt=document.getElementById('reliability-table'); if(!rt)return;
-  rt.querySelector('thead').innerHTML=`<tr>${['Station','Line','Disruptions','Delay-mins','Disruption Rate','Avg Wait','Alert',''].map(h=>`<th>${h}</th>`).join('')}</tr>`;
-  rt.querySelector('tbody').innerHTML=st.map(s=>`<tr>
-    <td><div class="tbl-station"><div class="station-dot" style="background:${LINE_COLOR[s.line]||'#8B9CC0'}"></div><div class="station-name">${s.station}</div></div></td>
+  const tb=document.getElementById('rel-tbody'); if(!tb) return;
+  tb.innerHTML=st.map(s=>`<tr>
+    <td><div class="tbl-station"><div class="station-dot" style="background:${LC[s.line]||'#64748B'}"></div><div class="station-name">${s.station}</div></div></td>
     <td>${linePill(s.line)}</td>
-    <td><span class="metric-val" style="color:${s.totalDisruptions>=(rd.thresholds?.disruptionAlert||2)?'var(--crit)':'var(--t1)'}">${s.totalDisruptions}</span></td>
+    <td><span class="metric-val" style="color:${s.totalDisruptions>=(rd.thresholds?.disruptionAlert||2)?'var(--crit)':'var(--t0)'}">${s.totalDisruptions}</span></td>
     <td><span class="metric-val">${s.totalDelayMinutes}</span></td>
     <td><span class="metric-val">${fmtP(s.disruptionRatePct)}</span></td>
     <td><span class="metric-val">${fmtN(s.avgWaitTime,1)} min</span></td>
@@ -1017,171 +956,134 @@ function renderReliability(){
   </tr>`).join('');
 }
 
-// ── 7. GROWTH ────────────────────────────────────────────────────
+// ── 7. GROWTH ─────────────────────────────────────────────────
 function renderGrowth(){
-  const ga=S.data.ga; if(!ga)return;
-  const sec=document.getElementById('sec-growth');
-  if(!sec.querySelector('.chart-row')){
-    sec.innerHTML=`<div class="sec-header"><div class="sec-title">Growth Analysis</div><div class="sec-sub">How stations are growing or declining from their baseline observation</div></div>
-    <div class="chart-row chart-row-2" style="margin-bottom:14px">
-      <div class="card"><div class="card-header"><div class="card-title">Growth from Baseline (%)</div></div><div class="card-body" style="height:280px"><div class="chart-wrap" style="height:100%"><canvas id="chart-growth-bar"></canvas></div></div></div>
-      <div class="card"><div class="card-header"><div class="card-title">Growth Status Breakdown</div></div><div class="card-body" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap"><div style="width:150px;height:150px;flex-shrink:0"><canvas id="chart-growth-donut"></canvas></div><div id="growth-legend" class="donut-legend" style="flex:1;min-width:120px"></div></div></div>
-    </div>
-    <div class="card"><div class="card-header"><div class="card-title">Station Growth Detail</div></div><div class="tbl-wrap"><table id="growth-table"><thead></thead><tbody></tbody></table></div></div>`;
-  }
+  const ga=S.data.ga; if(!ga) return;
   const st=(ga.stations||[]).slice().sort((a,b)=>b.latestGrowthPct-a.latestGrowthPct);
-  const gcols=st.map(s=>{
-    if(s.isRapidGrowth)return'rgba(147,51,234,.7)';
-    if(s.latestGrowthPct>5)return'rgba(34,197,94,.6)';
-    if(s.isDeclining)return'rgba(255,68,68,.7)';
-    return'rgba(62,134,255,.5)';
-  });
-  destroyChart('growth-bar');
+  const gcol=s=>s.isRapidGrowth?'rgba(109,40,217,.7)':s.latestGrowthPct>5?'rgba(21,128,61,.65)':s.isDeclining?'rgba(217,43,43,.7)':'rgba(37,88,232,.5)';
+
+  dc('growth-bar');
   const gb=document.getElementById('chart-growth-bar');
-  if(gb) S.charts['growth-bar']=new Chart(gb,{type:'bar',data:{labels:st.map(s=>s.station.length>12?s.station.slice(0,12)+'…':s.station),datasets:[{data:st.map(s=>s.latestGrowthPct),backgroundColor:gcols,borderRadius:3,borderSkipped:false}]},options:{...chartDefaults(),indexAxis:'y',scales:{x:{...axisDefaults().x,ticks:{...axisDefaults().x.ticks,callback:v=>v+'%'}},y:axisDefaults().y}}});
+  if(gb && st.length) S.charts['growth-bar']=new Chart(gb,{type:'bar',data:{labels:st.map(s=>s.station.length>13?s.station.slice(0,11)+'…':s.station),datasets:[{data:st.map(s=>s.latestGrowthPct),backgroundColor:st.map(gcol),borderRadius:3,borderSkipped:false}]},options:{...CD(),indexAxis:'y',scales:{x:{...AX().x,ticks:{...AX().x.ticks,callback:v=>v+'%'}},y:AX().y},plugins:{...CD().plugins,tooltip:{...TT,callbacks:{label:c=>`Growth: ${c.raw>0?'+':''}${c.raw.toFixed(1)}%`}}}}});
 
   const sb=ga.statusBreakdown||{};
-  const gCols={'Rapid Growth':'rgba(147,51,234,.8)','Growing':'rgba(34,197,94,.8)','Stable':'rgba(62,134,255,.6)','Declining':'rgba(255,68,68,.8)'};
-  const gKeys=Object.keys(sb);
-  destroyChart('growth-donut');
+  const gC={'Rapid Growth':'rgba(109,40,217,.8)','Growing':'rgba(21,128,61,.8)','Stable':'rgba(37,88,232,.6)','Declining':'rgba(217,43,43,.8)'};
+  const gK=Object.keys(sb);
+  dc('growth-donut');
   const gd=document.getElementById('chart-growth-donut');
-  if(gd) S.charts['growth-donut']=new Chart(gd,{type:'doughnut',data:{labels:gKeys,datasets:[{data:gKeys.map(k=>sb[k]),backgroundColor:gKeys.map(k=>gCols[k]||'#3E86FF'),borderColor:'var(--bg2)',borderWidth:2}]},options:{...chartDefaults(),cutout:'65%'}});
-
+  if(gd && gK.length) S.charts['growth-donut']=new Chart(gd,{type:'doughnut',data:{labels:gK,datasets:[{data:gK.map(k=>sb[k]),backgroundColor:gK.map(k=>gC[k]||'#2558E8'),borderColor:'#FFFFFF',borderWidth:3}]},options:{...CD(),cutout:'65%'}});
   const gl=document.getElementById('growth-legend');
-  if(gl) gl.innerHTML=gKeys.map(k=>`<div class="donut-item"><div class="donut-swatch" style="background:${gCols[k]||'#3E86FF'}"></div><div class="donut-label">${k}</div><div class="donut-val">${sb[k]}</div></div>`).join('');
+  if(gl) gl.innerHTML=gK.map(k=>`<div class="donut-item"><div class="donut-swatch" style="background:${gC[k]||'#2558E8'}"></div><div class="donut-label">${k}</div><div class="donut-val">${sb[k]}</div></div>`).join('');
 
-  const gt=document.getElementById('growth-table'); if(!gt)return;
-  gt.querySelector('thead').innerHTML=`<tr>${['Station','Line','Growth %','Status','Avg Ridership','Priority',''].map(h=>`<th>${h}</th>`).join('')}</tr>`;
-  gt.querySelector('tbody').innerHTML=st.map(s=>`<tr>
-    <td><div class="tbl-station"><div class="station-dot" style="background:${LINE_COLOR[s.line]||'#8B9CC0'}"></div><div class="station-name">${s.station}</div></div></td>
+  const tb=document.getElementById('growth-tbody'); if(!tb) return;
+  tb.innerHTML=st.map(s=>`<tr>
+    <td><div class="tbl-station"><div class="station-dot" style="background:${LC[s.line]||'#64748B'}"></div><div class="station-name">${s.station}</div></div></td>
     <td>${linePill(s.line)}</td>
-    <td><span class="metric-val" style="color:${s.isRapidGrowth?'#C084FC':s.isDeclining?'var(--crit)':s.latestGrowthPct>0?'var(--low)':'var(--t1)'}">${s.latestGrowthPct>0?'+':''}${fmtN(s.latestGrowthPct,1)}%</span></td>
+    <td><span class="metric-val" style="color:${s.isRapidGrowth?'#6D28D9':s.isDeclining?'var(--crit)':s.latestGrowthPct>0?'var(--low)':'var(--t1)'}">${s.latestGrowthPct>0?'+':''}${fmtN(s.latestGrowthPct,1)}%</span></td>
     <td>${growthTag(s.growthStatus)}</td>
     <td><span class="metric-val">${fmtL(s.avgRidership)}</span></td>
-    <td>${badgeHtml(s.priorityLevel)}</td>
+    <td>${badge(s.priorityLevel)}</td>
     <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">→</button></td>
   </tr>`).join('');
 }
 
-// ── DRILL-DOWN ───────────────────────────────────────────────────
+// ── DRILL-DOWN ────────────────────────────────────────────────
 async function openDrilldown(station){
   document.getElementById('overlay').classList.add('open');
   document.getElementById('drilldown').classList.add('open');
-  document.getElementById('dd-header').innerHTML=`<div><div class="dd-title">${station}</div><div class="dd-meta">Loading…</div></div><div class="dd-close" onclick="closePanel()">✕</div>`;
-  document.getElementById('dd-body').innerHTML=`<div class="loader"><div class="loader-track"><div class="loader-fill"></div></div><div class="loader-text">Loading station data…</div></div>`;
-  try{
-    const d=await api('getStationDrilldown',{station});
+  document.getElementById('dd-header').innerHTML=`<div><div class="dd-title">${station}</div><div class="dd-meta" style="color:var(--t2);font-size:12px">Loading…</div></div><div class="dd-close" onclick="closePanel()">✕</div>`;
+  document.getElementById('dd-body').innerHTML=`<div class="loader" style="height:300px"><div class="loader-track"><div class="loader-fill"></div></div><div class="loader-text">Fetching station data…</div></div>`;
+  try {
+    const d = await api('getStationDrilldown', {station});
     renderDrilldown(d);
-  }catch(e){
-    document.getElementById('dd-body').innerHTML=`<div class="empty-state"><div class="empty-icon">⚠</div><div class="empty-text">Error loading station data: ${e.message}</div></div>`;
+  } catch(e) {
+    document.getElementById('dd-body').innerHTML=`<div class="empty-state"><div class="empty-icon">⚠</div><div class="empty-text">Error: ${e.message}</div></div>`;
   }
 }
-function closePanel(){
-  document.getElementById('overlay').classList.remove('open');
-  document.getElementById('drilldown').classList.remove('open');
-  destroyChart('dd-trend');
-}
-function renderDrilldown(d){
-  if(d.error){document.getElementById('dd-body').innerHTML=`<div class="empty-state"><div class="empty-icon">⚠</div><div class="empty-text">${d.error}</div></div>`;return;}
-  const m=d.meta||{}, sm=d.summary||{}, rc=d.recommendedAction||{}, fl=d.evidenceFlags||[], ww=d.weekdayWeekend||{};
-  const lc=LINE_COLOR[m.line]||'#3E86FF';
-  document.getElementById('dd-header').innerHTML=`<div style="flex:1"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-    <div class="dd-title">${m.station}</div></div>
-    <div class="dd-meta">${linePill(m.line)}&nbsp;${badgeHtml(sm.priorityLevel)}&nbsp;<span style="font-size:11px;color:var(--t2)">${m.stationType}</span></div>
-  </div><div class="dd-close" onclick="closePanel()">✕</div>`;
+function closePanel(){ document.getElementById('overlay').classList.remove('open'); document.getElementById('drilldown').classList.remove('open'); dc('dd-trend'); }
 
-  const body=document.getElementById('dd-body');
-  body.innerHTML=`
+function renderDrilldown(d){
+  if(d?.error){ document.getElementById('dd-body').innerHTML=`<div class="empty-state"><div class="empty-icon">⚠</div><div class="empty-text">${d.error}</div></div>`; return; }
+  const m=d.meta||{}, sm=d.summary||{}, rc=d.recommendedAction||{}, fl=d.evidenceFlags||[], ww=d.weekdayWeekend||{};
+  const lc=LC[m.line]||'#2558E8';
+  document.getElementById('dd-header').innerHTML=`<div style="flex:1"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><div class="dd-title">${m.station}</div></div><div class="dd-meta">${linePill(m.line)}&nbsp;${badge(sm.priorityLevel)}&nbsp;<span style="font-size:11px;color:var(--t2)">${m.stationType}</span></div></div><div class="dd-close" onclick="closePanel()">✕</div>`;
+  document.getElementById('dd-body').innerHTML=`
   <div class="dd-kpis">
     <div class="dd-kpi"><div class="dd-kpi-label">Avg Ridership</div><div class="dd-kpi-val" style="color:${lc}">${fmtL(sm.avgRidership)}</div><div class="dd-kpi-sub">per observation</div></div>
-    <div class="dd-kpi"><div class="dd-kpi-label">Priority Score</div><div class="dd-kpi-val" style="color:${PRIORITY_COLOR[sm.priorityLevel]||'var(--t0)'}">${fmtN(sm.priorityScore,1)}</div><div class="dd-kpi-sub">${sm.priorityLevel}</div></div>
+    <div class="dd-kpi"><div class="dd-kpi-label">Priority Score</div><div class="dd-kpi-val" style="color:${PC[sm.priorityLevel]||'var(--t0)'}">${fmtN(sm.priorityScore,1)}</div><div class="dd-kpi-sub">${sm.priorityLevel}</div></div>
     <div class="dd-kpi"><div class="dd-kpi-label">vs Network Avg</div><div class="dd-kpi-val" style="color:${sm.demandVsNetworkAvg>=150?'var(--crit)':sm.demandVsNetworkAvg>=110?'var(--high)':'var(--t0)'}">${fmtN(sm.demandVsNetworkAvg,1)}%</div><div class="dd-kpi-sub">demand index</div></div>
     <div class="dd-kpi"><div class="dd-kpi-label">Peak Share</div><div class="dd-kpi-val">${fmtP(sm.avgPeakSharePct)}</div><div class="dd-kpi-sub">of daily ridership</div></div>
     <div class="dd-kpi"><div class="dd-kpi-label">Growth</div><div class="dd-kpi-val" style="color:${sm.growthFromBaseline>0?'var(--low)':'var(--crit)'}">${sm.growthFromBaseline>0?'+':''}${fmtN(sm.growthFromBaseline,1)}%</div><div class="dd-kpi-sub">${sm.growthStatus}</div></div>
-    <div class="dd-kpi"><div class="dd-kpi-label">Avg Wait Time</div><div class="dd-kpi-val">${fmtN(sm.avgWaitTime,1)}</div><div class="dd-kpi-sub">minutes</div></div>
+    <div class="dd-kpi"><div class="dd-kpi-label">Avg Wait</div><div class="dd-kpi-val">${fmtN(sm.avgWaitTime,1)}</div><div class="dd-kpi-sub">minutes</div></div>
   </div>
-
   <div class="dd-action-box">
-    <div class="dd-action-label">Recommended Action &nbsp;·&nbsp; <span style="color:${urgencyColor(rc.urgency)}">${rc.urgency||''}</span></div>
+    <div class="dd-action-label">Recommended Action &nbsp;·&nbsp; <span style="color:${urgencyColor(rc.urgency)};font-weight:700">${rc.urgency||''}</span></div>
     <div class="dd-action-text">${rc.action||'Continue monitoring.'}</div>
   </div>
-
   <div class="dd-section-title">Evidence Flags</div>
-  <div class="dd-flags">${fl.length?fl.map(f=>{
-    const sc={critical:'var(--crit)',high:'var(--high)',medium:'var(--med)',low:'var(--low)'}[f.severity]||'var(--t2)';
-    return`<div class="dd-flag"><div class="dd-flag-dot" style="background:${sc}"></div><div><div class="dd-flag-label">${f.label}</div><div class="dd-flag-val">${f.value}</div></div></div>`;
-  }).join(''):`<div style="font-size:12px;color:var(--t2);padding:8px 0">No flags triggered for current thresholds.</div>`}</div>
-
+  <div class="dd-flags">${fl.length?fl.map(f=>{const sc={critical:'var(--crit)',high:'var(--high)',medium:'var(--med)',low:'var(--low)'}[f.severity]||'var(--t2)';return`<div class="dd-flag"><div class="dd-flag-dot" style="background:${sc}"></div><div><div class="dd-flag-label">${f.label}</div><div class="dd-flag-val">${f.value}</div></div></div>`;}).join(''):'<div style="font-size:12px;color:var(--t2);padding:6px 0">No flags triggered at current thresholds.</div>'}</div>
   <div class="dd-section-title">Ridership Trend</div>
-  <div style="height:180px"><canvas id="dd-trend-chart"></canvas></div>
-
+  <div style="height:180px;background:var(--bg1);border-radius:8px;padding:12px;border:1px solid var(--b0)"><canvas id="dd-trend-chart" style="height:100%!important"></canvas></div>
   <div class="dd-section-title">Weekday vs Weekend</div>
   <div class="dd-wd-grid">
     <div class="dd-wd-card"><div class="dd-wd-label">Weekday Avg</div><div class="dd-wd-val" style="color:var(--accent)">${fmtL(ww.weekday?.avgRidership)}</div><div class="dd-wd-sub">Peak ${fmtP(ww.weekday?.avgPeakShare)} · ${ww.weekday?.days||0} days</div></div>
     <div class="dd-wd-card"><div class="dd-wd-label">Weekend Avg</div><div class="dd-wd-val" style="color:var(--high)">${fmtL(ww.weekend?.avgRidership)}</div><div class="dd-wd-sub">Peak ${fmtP(ww.weekend?.avgPeakShare)} · ${ww.weekend?.days||0} days</div></div>
   </div>
-  ${ww.wdWeRatio?`<div style="text-align:center;font-size:11px;color:var(--t2);margin-top:8px">Weekday/Weekend ratio: <span style="color:var(--t0);font-weight:600">${ww.wdWeRatio}×</span></div>`:''}
-
-  <div style="margin-top:16px;padding:10px;background:var(--bg2);border-radius:8px;border:1px solid var(--b0)">
-    <div style="font-size:10px;color:var(--t2);margin-bottom:4px;font-weight:600">Period Summary</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;color:var(--t1)">
-      <div>Total ridership: <span style="color:var(--t0);font-weight:600">${fmtL(sm.totalRidership)}</span></div>
-      <div>Max single day: <span style="color:var(--t0);font-weight:600">${fmtL(sm.maxRidership)}</span></div>
-      <div>Disruptions: <span style="color:${sm.totalDisruptions>0?'var(--crit)':'var(--low)'};font-weight:600">${sm.totalDisruptions}</span></div>
-      <div>Delay-minutes: <span style="color:var(--t0);font-weight:600">${sm.totalDelayMinutes}</span></div>
-      <div>Days observed: <span style="color:var(--t0);font-weight:600">${sm.daysObserved}</span></div>
-      <div>Interchange: <span style="color:var(--t0);font-weight:600">${m.stationType==='Interchange'?fmtP(sm.avgInterchangeSharePct)+' share':'N/A'}</span></div>
+  ${ww.wdWeRatio?`<div style="text-align:center;font-size:11px;color:var(--t2);margin-top:8px">Weekday / Weekend ratio: <strong style="color:var(--t0)">${ww.wdWeRatio}×</strong></div>`:''}
+  <div style="margin-top:16px;padding:12px;background:var(--bg1);border-radius:8px;border:1px solid var(--b0)">
+    <div style="font-size:10px;color:var(--t2);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px">Period Summary</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:var(--t1)">
+      <div>Total ridership: <strong style="color:var(--t0)">${fmtL(sm.totalRidership)}</strong></div>
+      <div>Max single day: <strong style="color:var(--t0)">${fmtL(sm.maxRidership)}</strong></div>
+      <div>Disruptions: <strong style="color:${sm.totalDisruptions>0?'var(--crit)':'var(--low)'}">${sm.totalDisruptions}</strong></div>
+      <div>Delay-minutes: <strong style="color:var(--t0)">${sm.totalDelayMinutes}</strong></div>
+      <div>Days observed: <strong style="color:var(--t0)">${sm.daysObserved}</strong></div>
+      <div>Interchange: <strong style="color:var(--t0)">${m.stationType==='Interchange'?fmtP(sm.avgInterchangeSharePct)+' share':'N/A'}</strong></div>
     </div>
   </div>`;
 
-  // Trend mini-chart
   const ts=d.timeSeries||[];
   setTimeout(()=>{
-    destroyChart('dd-trend');
+    dc('dd-trend');
     const tc=document.getElementById('dd-trend-chart');
-    if(tc) S.charts['dd-trend']=new Chart(tc,{type:'line',data:{labels:ts.map(r=>r.date.slice(5)),datasets:[{label:'Ridership',data:ts.map(r=>r.ridership),borderColor:lc,backgroundColor:lc+'18',fill:true,tension:.35,borderWidth:2,pointBackgroundColor:ts.map(r=>r.dayType==='Weekday'?lc:'#FF8C00'),pointRadius:3}]},options:{...chartDefaults(),scales:{...axisDefaults(),y:{...axisDefaults().y,ticks:{...axisDefaults().y.ticks,callback:v=>fmtL(v)}}},plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:ctx=>`${fmtL(ctx.raw)}`}}}}});
+    if(tc && ts.length) S.charts['dd-trend']=new Chart(tc,{type:'line',data:{labels:ts.map(r=>r.date.slice(5)),datasets:[{label:'Ridership',data:ts.map(r=>r.ridership),borderColor:lc,backgroundColor:lc+'18',fill:true,tension:.35,borderWidth:2,pointBackgroundColor:ts.map(r=>r.dayType==='Weekday'?lc:'#E06200'),pointRadius:3,pointHoverRadius:5}]},options:{...CD(),scales:{...AX(),y:{...AX().y,ticks:{...AX().y.ticks,callback:v=>fmtL(v)}}}}});
   },50);
 }
 
-// ── FILTERS ──────────────────────────────────────────────────────
+// ── FILTERS ───────────────────────────────────────────────────
 function applyFilters(){
-  S.filters.line        =document.getElementById('f-line')?.value||'';
-  S.filters.stationType =document.getElementById('f-type')?.value||'';
-  S.filters.dayType     =document.getElementById('f-day')?.value||'';
-  S.filters.dateFrom    =document.getElementById('f-from')?.value||'';
-  S.filters.dateTo      =document.getElementById('f-to')?.value||'';
+  S.filters.line        = document.getElementById('f-line')?.value||'';
+  S.filters.stationType = document.getElementById('f-type')?.value||'';
+  S.filters.dayType     = document.getElementById('f-day')?.value||'';
+  S.filters.dateFrom    = document.getElementById('f-from')?.value||'';
+  S.filters.dateTo      = document.getElementById('f-to')?.value||'';
   loadAll();
 }
 function clearFilters(){
-  ['f-line','f-type','f-day'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
-  // Reset dates to full range
-  if(S.data.fo?.dateRange){
-    const fd=document.getElementById('f-from'), ft=document.getElementById('f-to');
-    if(fd)fd.value=S.data.fo.dateRange.min||'';
-    if(ft)ft.value=S.data.fo.dateRange.max||'';
-  }
-  S.filters={dateFrom:'',dateTo:'',line:'',stationType:'',dayType:''};
+  ['f-line','f-type','f-day'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  const fo=S.data.fo;
+  if(fo?.dateRange){ const fd=document.getElementById('f-from'),ft=document.getElementById('f-to'); if(fd)fd.value=fo.dateRange.min||''; if(ft)ft.value=fo.dateRange.max||''; }
+  S.filters={ dateFrom:'', dateTo:'', line:'', stationType:'', dayType:'' };
   loadAll();
 }
 
-// ── TAB NAV ──────────────────────────────────────────────────────
+// ── TAB NAV ───────────────────────────────────────────────────
 function switchTab(tab,el){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   const sec=document.getElementById('sec-'+tab);
-  if(sec)sec.classList.add('active');
-  if(el)el.classList.add('active');
+  if(sec) sec.classList.add('active');
+  if(el) el.classList.add('active');
   S.activeTab=tab;
-  // Re-render charts if switching to a tab that might need it
-  if(tab==='trends'&&S.data.td)setTimeout(renderTrends,50);
-  if(tab==='peak'&&S.data.pa)setTimeout(renderPeak,50);
+  // Re-init charts for the newly visible tab (canvas size may have changed)
+  setTimeout(()=>{
+    if(tab==='trends') safeRender('Trends',()=>renderTrends());
+    if(tab==='peak')   safeRender('Peak',  ()=>renderPeak());
+  }, 30);
 }
 
-// ── INIT ─────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('line-legend').innerHTML='Loading…';
-  loadAll();
-});
+// ── INIT ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', loadAll);
 </script>
 </body>
 </html>
