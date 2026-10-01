@@ -143,7 +143,9 @@ th{font-size:11px;color:var(--t2);font-weight:700;padding:9px 12px;text-align:le
 th:hover{color:var(--t1)}
 td{padding:10px 12px;border-bottom:1px solid var(--b0);font-size:12px;color:var(--t1);vertical-align:middle}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:#F0F4FF}
+tr:hover td{background:#EEF4FF}
+tr:nth-child(even) td{background:#FAFBFF}
+tr:nth-child(even):hover td{background:#EEF4FF}
 .tbl-station{display:flex;align-items:center;gap:8px}
 .station-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .station-name{font-weight:700;color:var(--t0);font-size:12px}
@@ -264,6 +266,7 @@ tr:hover td{background:#F0F4FF}
 .err-close{font-size:18px;cursor:pointer;color:#B45309;flex-shrink:0}
 .load-line{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2)}
 .load-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.4s infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
 </style>
 </head>
@@ -279,7 +282,6 @@ tr:hover td{background:#F0F4FF}
   <div id="load-msg" class="loader-text">Connecting to backend…</div>
   <div class="load-line"><div class="load-dot"></div><span id="load-step">Initialising</span></div>
 </div>
-@keyframes spin{to{transform:rotate(360deg)}}
 
 <!-- ERROR BANNER -->
 <div id="error-banner">
@@ -411,7 +413,7 @@ tr:hover td{background:#F0F4FF}
             <thead><tr>
               <th>Station</th><th>Line</th><th>Priority</th>
               <th>Issue Category</th><th>Avg Ridership</th>
-              <th>vs Network</th><th>Growth</th><th>Urgency</th><th></th>
+              <th>vs Network</th><th>Peak Share</th><th>Growth</th><th>Urgency</th><th></th>
             </tr></thead>
             <tbody id="action-tbody"></tbody>
           </table>
@@ -533,26 +535,38 @@ tr:hover td{background:#F0F4FF}
     <section class="section" id="sec-growth">
       <div class="sec-header">
         <div class="sec-title">Growth Analysis</div>
-        <div class="sec-sub">How stations are growing or declining from their baseline</div>
+        <div class="sec-sub">Demand trajectory vs. baseline — identifies where capacity pressure is building and where ridership is declining</div>
       </div>
+      <!-- Growth KPI cards -->
+      <div id="growth-kpis" class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px"></div>
       <div class="chart-row chart-row-2" style="margin-bottom:14px">
         <div class="card">
-          <div class="card-header"><div class="card-title">Growth from Baseline (%)</div></div>
-          <div class="card-body" style="height:280px"><canvas id="chart-growth-bar"></canvas></div>
+          <div class="card-header">
+            <div class="card-title">Growth from Baseline (%)</div>
+            <div style="display:flex;gap:8px;margin-left:auto">
+              <span style="font-size:10px;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(109,40,217,.8)"></span>Extreme &gt;100%</span>
+              <span style="font-size:10px;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(37,88,232,.7)"></span>50–100%</span>
+              <span style="font-size:10px;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(21,128,61,.7)"></span>&lt;50%</span>
+            </div>
+          </div>
+          <div class="card-body" style="height:300px"><canvas id="chart-growth-bar"></canvas></div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">Growth Status Breakdown</div></div>
-          <div class="card-body" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+          <div class="card-header"><div class="card-title">Growth Intensity Distribution</div><span class="card-badge badge-blue" style="margin-left:auto">by % bucket</span></div>
+          <div class="card-body" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;min-height:160px">
             <div style="width:150px;height:150px;flex-shrink:0"><canvas id="chart-growth-donut"></canvas></div>
             <div id="growth-legend" class="donut-legend" style="flex:1;min-width:120px"></div>
           </div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-title">Station Growth Detail</div></div>
+        <div class="card-header">
+          <div class="card-title">Station Growth Detail</div>
+          <div style="margin-left:auto;font-size:11px;color:var(--t2)">Sorted by growth %</div>
+        </div>
         <div class="tbl-wrap">
           <table id="growth-table">
-            <thead><tr><th>Station</th><th>Line</th><th>Growth %</th><th>Status</th><th>Avg Ridership</th><th>Priority</th><th></th></tr></thead>
+            <thead><tr><th>Station</th><th>Line</th><th>Growth %</th><th>Intensity</th><th>Status</th><th>Avg Ridership</th><th>Peak Share</th><th>Priority</th><th></th></tr></thead>
             <tbody id="growth-tbody"></tbody>
           </table>
         </div>
@@ -625,35 +639,45 @@ function setStep(msg){ const el=document.getElementById('load-step'); if(el)el.t
 function hideLoader(){ const ol=document.getElementById('loading-overlay'); if(ol)ol.classList.add('hidden'); }
 function showError(msg){ console.error('[DMRC Error]', msg); const b=document.getElementById('error-banner'); if(b){b.classList.add('show'); const t=document.getElementById('err-msg-text'); if(t)t.textContent=msg;} document.getElementById('data-status').textContent='⚠ Error — see banner'; }
 
-// ── API ────────────────────────────────────────────────────────
-async function api(action, extra={}, timeoutMs=20000){
-  const u = new URL(WEBAPP_URL);
-  u.searchParams.set('action', action);
-  Object.entries(S.filters).forEach(([k,v])=>{ if(v) u.searchParams.set(k,v); });
-  Object.entries(extra).forEach(([k,v])=>u.searchParams.set(k,v));
+// ── API (JSONP — bypasses CORS on GitHub Pages) ───────────────
+// <script> tag injection: no preflight, no CORS headers needed.
+// Requires Code.gs to support ?callback= param (see setup guide).
+function api(action, extra={}, timeoutMs=20000){
+  return new Promise((resolve, reject)=>{
+    // Unique callback name
+    const cb = '__dmrc_' + Date.now() + '_' + (Math.random()*1e9|0);
+    const u  = new URL(WEBAPP_URL);
+    u.searchParams.set('action',   action);
+    u.searchParams.set('callback', cb);
+    Object.entries(S.filters).forEach(([k,v])=>{ if(v) u.searchParams.set(k,v); });
+    Object.entries(extra).forEach(([k,v])=>u.searchParams.set(k,v));
 
-  const ctrl = new AbortController();
-  const tid  = setTimeout(()=>ctrl.abort(), timeoutMs);
-
-  try {
     console.log('[DMRC] fetching:', action);
-    const r = await fetch(u.toString(), { redirect:'follow', signal:ctrl.signal });
-    clearTimeout(tid);
-    const text = await r.text();
-    // Detect GAS HTML error pages
-    if(text.trim().startsWith('<!') || text.trim().startsWith('<html')){
-      if(text.includes('accounts.google.com')||text.includes('signin')) throw new Error('GAS returned auth page — set deployment access to "Anyone"');
-      throw new Error('GAS returned HTML instead of JSON for: ' + action);
+
+    // Timeout guard
+    const tid = setTimeout(()=>{
+      cleanup(); reject(new Error('Timeout (20s) on: '+action));
+    }, timeoutMs);
+
+    // GAS calls window[cb](data) when script loads
+    window[cb] = (data)=>{
+      cleanup();
+      if(data.status==='error') return reject(new Error(data.error||'Backend error on '+action));
+      console.log('[DMRC] OK:', action);
+      resolve(data);
+    };
+
+    function cleanup(){
+      clearTimeout(tid);
+      delete window[cb];
+      if(sc.parentNode) sc.parentNode.removeChild(sc);
     }
-    const data = JSON.parse(text);
-    if(data.status==='error') throw new Error(data.error || 'Backend error on ' + action);
-    console.log('[DMRC] OK:', action, '→', Object.keys(data).filter(k=>!['status','action','timestamp','notice'].includes(k)));
-    return data;
-  } catch(e) {
-    clearTimeout(tid);
-    if(e.name==='AbortError') throw new Error('Timeout (20s) on: ' + action + ' — GAS may be slow or unreachable');
-    throw e;
-  }
+
+    const sc = document.createElement('script');
+    sc.src   = u.toString();
+    sc.onerror = ()=>{ cleanup(); reject(new Error('Script load failed for: '+action+' — check GAS deployment')); };
+    document.head.appendChild(sc);
+  });
 }
 
 // ── LOAD ALL ──────────────────────────────────────────────────
@@ -825,9 +849,10 @@ function renderActionCenter(){
     <td>${actionCat(o.actionCategory)}</td>
     <td><span class="metric-val">${fmtL(o.avgRidership)}</span></td>
     <td><span class="metric-val" style="color:${o.demandVsNetworkAvg>=150?'var(--crit)':o.demandVsNetworkAvg>=110?'var(--high)':o.demandVsNetworkAvg<75?'var(--low)':'var(--t1)'}">${fmtN(o.demandVsNetworkAvg,1)}%</span></td>
+    <td><span class="metric-val" style="color:${o.peakSharePct>=45?'var(--high)':'var(--t1)'}">${fmtP(o.peakSharePct)}</span></td>
     <td>${growthTag(o.growthStatus)}</td>
     <td><span style="font-size:11px;font-weight:600;color:${urgencyColor(o.urgency)}">${o.urgency}</span></td>
-    <td><button class="btn btn-sm" onclick="openDrilldown('${o.station}')">Details →</button></td>
+    <td><button class="btn btn-sm" onclick="openDrilldown('${o.station}')">Details</button></td>
   </tr>`).join('') || `<tr><td colspan="9" class="empty-state"><div class="empty-text">No stations match this filter</div></td></tr>`;
 }
 function setActionFilter(f){ S.actionFilter=f; safeRender('ActionCenter',()=>renderActionCenter()); }
@@ -887,10 +912,10 @@ function renderRankTable(){
     <td><span style="font-size:11px;color:var(--t2)">${s.stationType}</span></td>
     <td><span class="metric-val">${fmtL(s.avgRidership)}</span></td>
     <td><span class="metric-val" style="color:${s.demandVsNetworkAvg>=150?'var(--crit)':s.demandVsNetworkAvg>=110?'var(--high)':s.demandVsNetworkAvg<75?'var(--low)':'var(--t1)'}">${fmtN(s.demandVsNetworkAvg,1)}%</span></td>
-    <td><span class="metric-val">${fmtP(s.avgPeakSharePct)}</span></td>
+    <td><span class="metric-val">${fmtP(s.avgPeakSharePct||s.peakSharePct)}</span></td>
     <td>${growthTag(s.growthStatus)}</td>
     <td>${badge(s.priorityLevel)}</td>
-    <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">→</button></td>
+    <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">View</button></td>
   </tr>`).join('');
 }
 
@@ -952,38 +977,134 @@ function renderReliability(){
     <td><span class="metric-val">${fmtP(s.disruptionRatePct)}</span></td>
     <td><span class="metric-val">${fmtN(s.avgWaitTime,1)} min</span></td>
     <td>${s.reliabilityAlert?`<span class="badge badge-high">Alert</span>`:`<span class="badge badge-low">OK</span>`}</td>
-    <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">→</button></td>
+    <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">View</button></td>
   </tr>`).join('');
 }
 
 // ── 7. GROWTH ─────────────────────────────────────────────────
+function growthBarColor(g){
+  if(g>=100) return 'rgba(109,40,217,.85)';   // extreme purple
+  if(g>=75)  return 'rgba(124,58,237,.72)';   // high purple
+  if(g>=50)  return 'rgba(37,88,232,.72)';    // blue
+  if(g>=15)  return 'rgba(21,128,61,.70)';    // green
+  if(g>=0)   return 'rgba(96,165,250,.65)';   // light blue
+  return     'rgba(217,43,43,.82)';           // red = declining
+}
+function growthIntensityLabel(g){
+  if(g>=100) return '<span style="font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:rgba(109,40,217,.1);color:#5B21B6">Extreme</span>';
+  if(g>=75)  return '<span style="font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:rgba(124,58,237,.1);color:#6D28D9">Very High</span>';
+  if(g>=50)  return '<span style="font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:rgba(37,88,232,.1);color:#1D47C8">High</span>';
+  if(g>=15)  return '<span style="font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:rgba(21,128,61,.1);color:#166534">Moderate</span>';
+  if(g>=0)   return '<span style="font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:rgba(96,165,250,.1);color:#1D6FDB">Low</span>';
+  return '<span style="font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:rgba(217,43,43,.1);color:#B91C1C">Declining</span>';
+}
+
 function renderGrowth(){
   const ga=S.data.ga; if(!ga) return;
   const st=(ga.stations||[]).slice().sort((a,b)=>b.latestGrowthPct-a.latestGrowthPct);
-  const gcol=s=>s.isRapidGrowth?'rgba(109,40,217,.7)':s.latestGrowthPct>5?'rgba(21,128,61,.65)':s.isDeclining?'rgba(217,43,43,.7)':'rgba(37,88,232,.5)';
+  if(!st.length) return;
 
+  // ── Growth KPI summary cards ───────────────────────────────
+  const fastest   = st[0]||{};
+  const slowest   = st[st.length-1]||{};
+  const avgGr     = st.reduce((s,x)=>s+x.latestGrowthPct,0)/st.length;
+  const extremeN  = st.filter(s=>s.latestGrowthPct>=100).length;
+  const decliningN= st.filter(s=>s.latestGrowthPct<0).length;
+
+  const gkpi=document.getElementById('growth-kpis');
+  if(gkpi) gkpi.innerHTML=[
+    {label:'Fastest Growing Station', val:fastest.station||'—', sub:`+${fmtN(fastest.latestGrowthPct,1)}% · ${fastest.line||''} Line`, cls:'kpi-high', icon:'🚀'},
+    {label:'Avg Network Growth',      val:`+${fmtN(avgGr,1)}%`, sub:'mean across all stations',            cls:'kpi-med',  icon:'📊'},
+    {label:'Extreme Growth (>100%)',  val:extremeN,              sub:'need capacity review now',            cls:extremeN>5?'kpi-crit':'kpi-high', icon:'⚡'},
+    {label:'Declining Stations',      val:decliningN||0,         sub:decliningN?'losing ridership':'All stations growing', cls:decliningN>0?'kpi-crit':'kpi-low-ok', icon:'📉'}
+  ].map(d=>`<div class="kpi-card ${d.cls}">
+    <div class="kpi-icon">${d.icon}</div>
+    <div class="kpi-label">${d.label}</div>
+    <div class="kpi-val kpi-val-sm">${d.val}</div>
+    <div class="kpi-footer">${d.sub}</div>
+  </div>`).join('');
+
+  // ── Color-coded horizontal bar chart ──────────────────────
   dc('growth-bar');
   const gb=document.getElementById('chart-growth-bar');
-  if(gb && st.length) S.charts['growth-bar']=new Chart(gb,{type:'bar',data:{labels:st.map(s=>s.station.length>13?s.station.slice(0,11)+'…':s.station),datasets:[{data:st.map(s=>s.latestGrowthPct),backgroundColor:st.map(gcol),borderRadius:3,borderSkipped:false}]},options:{...CD(),indexAxis:'y',scales:{x:{...AX().x,ticks:{...AX().x.ticks,callback:v=>v+'%'}},y:AX().y},plugins:{...CD().plugins,tooltip:{...TT,callbacks:{label:c=>`Growth: ${c.raw>0?'+':''}${c.raw.toFixed(1)}%`}}}}});
+  if(gb) S.charts['growth-bar']=new Chart(gb,{
+    type:'bar',
+    data:{
+      labels:st.map(s=>s.station.length>14?s.station.slice(0,12)+'…':s.station),
+      datasets:[{
+        data:st.map(s=>s.latestGrowthPct),
+        backgroundColor:st.map(s=>growthBarColor(s.latestGrowthPct)),
+        borderRadius:4,
+        borderSkipped:false
+      }]
+    },
+    options:{
+      ...CD(),
+      indexAxis:'y',
+      scales:{
+        x:{...AX().x, ticks:{...AX().x.ticks, callback:v=>v+'%'}, min:0},
+        y:{...AX().y}
+      },
+      plugins:{
+        ...CD().plugins,
+        tooltip:{...TT, callbacks:{
+          label:c=>`Growth: ${c.raw>0?'+':''}${c.raw.toFixed(1)}%`,
+          afterLabel:c=>{ const s=st[c.dataIndex]; return s?`Ridership: ${fmtL(s.avgRidership)} · ${s.line} Line`:''; }
+        }}
+      }
+    }
+  });
 
-  const sb=ga.statusBreakdown||{};
-  const gC={'Rapid Growth':'rgba(109,40,217,.8)','Growing':'rgba(21,128,61,.8)','Stable':'rgba(37,88,232,.6)','Declining':'rgba(217,43,43,.8)'};
-  const gK=Object.keys(sb);
+  // ── Intensity bucket donut (replaces useless single-status donut) ──
+  const buckets=[
+    {label:'Extreme (>100%)', min:100, max:Infinity, color:'rgba(109,40,217,.85)'},
+    {label:'Very High (75–100%)', min:75, max:100,   color:'rgba(124,58,237,.75)'},
+    {label:'High (50–75%)',   min:50, max:75,         color:'rgba(37,88,232,.75)'},
+    {label:'Moderate (15–50%)',min:15, max:50,        color:'rgba(21,128,61,.75)'},
+    {label:'Low (0–15%)',     min:0,  max:15,         color:'rgba(96,165,250,.75)'},
+    {label:'Declining (<0%)', min:-Infinity, max:0,   color:'rgba(217,43,43,.80)'}
+  ];
+  const bCounts=buckets.map(b=>st.filter(s=>s.latestGrowthPct>=b.min && s.latestGrowthPct<b.max).length);
+  const active=buckets.filter((_,i)=>bCounts[i]>0);
+  const aCounts=bCounts.filter(c=>c>0);
+
   dc('growth-donut');
   const gd=document.getElementById('chart-growth-donut');
-  if(gd && gK.length) S.charts['growth-donut']=new Chart(gd,{type:'doughnut',data:{labels:gK,datasets:[{data:gK.map(k=>sb[k]),backgroundColor:gK.map(k=>gC[k]||'#2558E8'),borderColor:'#FFFFFF',borderWidth:3}]},options:{...CD(),cutout:'65%'}});
+  if(gd && aCounts.length) S.charts['growth-donut']=new Chart(gd,{
+    type:'doughnut',
+    data:{labels:active.map(b=>b.label),datasets:[{data:aCounts,backgroundColor:active.map(b=>b.color),borderColor:'#FFFFFF',borderWidth:3}]},
+    options:{...CD(), cutout:'65%', plugins:{...CD().plugins, tooltip:{...TT, callbacks:{label:c=>`${c.label}: ${c.raw} stations`}}}}
+  });
   const gl=document.getElementById('growth-legend');
-  if(gl) gl.innerHTML=gK.map(k=>`<div class="donut-item"><div class="donut-swatch" style="background:${gC[k]||'#2558E8'}"></div><div class="donut-label">${k}</div><div class="donut-val">${sb[k]}</div></div>`).join('');
+  if(gl) gl.innerHTML=active.map((b,i)=>`<div class="donut-item">
+    <div class="donut-swatch" style="background:${b.color};border-radius:3px"></div>
+    <div class="donut-label" style="font-size:11px">${b.label}</div>
+    <div class="donut-val">${aCounts[i]}</div>
+  </div>`).join('');
 
+  // ── Table with mini progress bars ─────────────────────────
+  const maxGr=Math.max(...st.map(s=>Math.abs(s.latestGrowthPct)),1);
   const tb=document.getElementById('growth-tbody'); if(!tb) return;
   tb.innerHTML=st.map(s=>`<tr>
-    <td><div class="tbl-station"><div class="station-dot" style="background:${LC[s.line]||'#64748B'}"></div><div class="station-name">${s.station}</div></div></td>
+    <td><div class="tbl-station">
+      <div class="station-dot" style="background:${LC[s.line]||'#64748B'}"></div>
+      <div><div class="station-name">${s.station}</div><div class="station-type">${s.stationType||''}</div></div>
+    </div></td>
     <td>${linePill(s.line)}</td>
-    <td><span class="metric-val" style="color:${s.isRapidGrowth?'#6D28D9':s.isDeclining?'var(--crit)':s.latestGrowthPct>0?'var(--low)':'var(--t1)'}">${s.latestGrowthPct>0?'+':''}${fmtN(s.latestGrowthPct,1)}%</span></td>
+    <td>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:${growthBarColor(s.latestGrowthPct).replace('rgba','rgb').replace(/,[^,]+\)$/,')')}">
+        ${s.latestGrowthPct>0?'+':''}${fmtN(s.latestGrowthPct,1)}%
+      </div>
+      <div style="height:4px;background:var(--b0);border-radius:2px;margin-top:5px;width:80px">
+        <div style="height:100%;width:${Math.min(Math.abs(s.latestGrowthPct)/maxGr*100,100).toFixed(0)}%;background:${growthBarColor(s.latestGrowthPct)};border-radius:2px;transition:width .4s"></div>
+      </div>
+    </td>
+    <td>${growthIntensityLabel(s.latestGrowthPct)}</td>
     <td>${growthTag(s.growthStatus)}</td>
     <td><span class="metric-val">${fmtL(s.avgRidership)}</span></td>
+    <td><span class="metric-val">${fmtP(s.avgPeakSharePct||s.peakSharePct)}</span></td>
     <td>${badge(s.priorityLevel)}</td>
-    <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">→</button></td>
+    <td><button class="btn btn-sm" onclick="openDrilldown('${s.station}')">View</button></td>
   </tr>`).join('');
 }
 
